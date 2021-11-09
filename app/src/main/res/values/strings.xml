@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">PartySurvivor</string>
+    <string name="CardButton">Card Games</string>
+    <string name="DiceButton">Dice Games</string>
+    <string name="OtherGames">You might be able to play :</string>
 </resources>
