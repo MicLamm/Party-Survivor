@@ -12,4 +12,11 @@
         android:layout_margin="@android:dimen/app_icon_size"
         android:text="Button"
         android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/Index"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="gone"/>
 </LinearLayout>
