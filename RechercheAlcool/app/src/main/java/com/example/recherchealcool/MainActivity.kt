@@ -5,6 +5,7 @@ import com.example.recherchealcool.R
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.core.content.res.ResourcesCompat
 
 import android.view.View
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        renameActionBar()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
 
         //val jameson = findViewById<ImageView>(android.R.id.jameson.png)
         //jameson.setImageResource(android.R.drawable.jameson.png)
@@ -50,6 +56,31 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun renameActionBar(){
+        intent = getIntent()
+        when(getIdButton()){
+            "scotchAndWhisky" -> supportActionBar?.setTitle("Scotch and Whisky")
+            "liqueurAndCream" -> supportActionBar?.setTitle("Liqueur and Cream")
+            "gin" -> supportActionBar?.setTitle("Gin")
+            "rum" -> supportActionBar?.setTitle("Rum")
+            "vodka" -> supportActionBar?.setTitle("Vodka")
+            "cognacAndBrandy" -> supportActionBar?.setTitle("Cognac and Brandy")
+            "aniseFlavouredSpirit" -> supportActionBar?.setTitle("Anise Flavoured Spirit")
+            "absinth" -> supportActionBar?.setTitle("Absinth")
+        }
+    }
+
     fun getIdButton():String{
         intent = getIntent()
         var idButton = ""
@@ -66,17 +97,35 @@ class MainActivity : AppCompatActivity() {
     fun getListData(idButton:String): List<Alcool>{
         var list = ArrayList<Alcool>()
         var finalList = ArrayList<Alcool>()
-        var ballantine = Alcool("Whiskey", "Ballantine", "ballantine")
-        var crownRoyal = Alcool("Whiskey", "Crown Royal", "crown_royale")
-        var grantsFamily = Alcool("Whiskey", "Grant's Family", "grants_family")
-        var jameson = Alcool("Whiskey", "Jameson", "jameson")
-        var johnnieWalker = Alcool("Whiskey", "Johnnnie Walker", "johnnie_walker")
+        var ballantine = Alcool("scotchAndWhisky", "Ballantine", "ballantine")
+        var crownRoyal = Alcool("scotchAndWhisky", "Crown Royal", "crown_royale")
+        var grantsFamily = Alcool("scotchAndWhisky", "Grant's Family", "grants_family")
+        var jameson = Alcool("scotchAndWhisky", "Jameson", "jameson")
+        var johnnieWalker = Alcool("scotchAndWhisky", "Johnnnie Walker", "johnnie_walker")
+        var bacardi = Alcool("rum", "Bacardi", "bacardi")
+        var captainMorgan = Alcool("rum", "Captain Morgan", "captain_morgan")
+        var sourPuss = Alcool("liqueurAndCream", "Sour Puss", "sour_puss")
+        var sortilege = Alcool("liqueurAndCream", "Sortilège", "sortilege")
+        var beefeater = Alcool("gin", "Beefeater", "beefeater")
+        var bombay = Alcool("gin", "Bombay", "bombay")
+        var meaghers = Alcool("liqueurAndCream", "Meaghers", "meaghers")
+
+
 
         list.add(ballantine)
         list.add(crownRoyal)
         list.add(grantsFamily)
         list.add(jameson)
         list.add(johnnieWalker)
+        list.add(bacardi)
+        list.add(captainMorgan)
+        list.add(sourPuss)
+        list.add(sortilege)
+        list.add(beefeater)
+        list.add(bombay)
+        list.add(meaghers)
+
+
 
         for(alcool in list){
             if(alcool.type == idButton){
