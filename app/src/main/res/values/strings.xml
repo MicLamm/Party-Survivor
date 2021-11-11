@@ -3,4 +3,26 @@
     <string name="CardButton">Card Games</string>
     <string name="DiceButton">Dice Games</string>
     <string name="OtherGames">You might be able to play :</string>
+    <string-array name="cocktail_List">
+        <item>Blue Lagoon</item>
+        <item>Gin Tonic</item>
+        <item>Margarita</item>
+        <item>Mojito</item>
+        <item>Rhum Cola</item>
+        <item>Sex On the Beach</item>
+        <item>White Russian</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>This is random description</item>
+        <item>This is random description</item>
+        <item>This is random description</item>
+        <item>This is random description</item>
+        <item>This is random description</item>
+        <item>This is random description</item>
+        <item>This is random description</item>
+    </string-array>
+
+
+
 </resources>
