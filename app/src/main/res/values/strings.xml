@@ -3,4 +3,9 @@
     <string name="CardButton">Card Games</string>
     <string name="DiceButton">Dice Games</string>
     <string name="OtherGames">You might be able to play :</string>
+
+    <string name="nav_header_title">Nav title :</string>
+    <string name="nav_header_subtitle">Nav subtitle :</string>
+    <string name="nav_header_desc">Nav desc :</string>
+
 </resources>
