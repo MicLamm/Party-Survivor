@@ -1,11 +1,14 @@
 package uqac.dim.partysurvivor
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerCoktail: RecyclerView.Adapter<RecyclerCoktail.ViewHolder>() {
@@ -16,8 +19,11 @@ class RecyclerCoktail: RecyclerView.Adapter<RecyclerCoktail.ViewHolder>() {
 
     private var images = intArrayOf(R.drawable.blue_lagoon, R.drawable.gin_tonic, R.drawable.margarita, R.drawable.rhum_cola, R.drawable.sex_on_the_beach, R.drawable.mojito)
 
+    lateinit var context: Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.cocktail_layout, parent, false)
+        context = parent.context
         return ViewHolder(v)
     }
 
@@ -36,15 +42,22 @@ class RecyclerCoktail: RecyclerView.Adapter<RecyclerCoktail.ViewHolder>() {
         var itemTitle: TextView
         var itemDetail: TextView
 
+
         init {
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
 
             itemView.setOnClickListener{
-                val position: Int =adapterPosition
+                val intent = Intent( context, CocktailPreview::class.java)
+                intent.putExtra("position", position)
 
-                Toast.makeText(itemView.context, "you clicked on ${titles[position]}", Toast.LENGTH_LONG).show()
+                context.startActivity(intent)
+
+
+                //val position: Int =adapterPosition
+
+                //Toast.makeText(itemView.context, "you clicked on ${titles[position]}", Toast.LENGTH_LONG).show()
             }
         }
     }
