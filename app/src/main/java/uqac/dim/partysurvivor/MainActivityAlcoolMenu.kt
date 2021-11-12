@@ -20,7 +20,7 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
         var buttonRum = findViewById<Button>(R.id.rum)
 
 
-        val monIntent1: Intent = Intent(this, MainActivity::class.java)
+        val monIntent1: Intent = Intent(this, ActivityListAlcool::class.java)
 
 
         buttonScotchAndWhisky.setOnClickListener{
