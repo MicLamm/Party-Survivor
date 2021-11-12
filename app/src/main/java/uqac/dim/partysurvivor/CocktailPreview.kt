@@ -2,6 +2,7 @@ package uqac.dim.partysurvivor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -18,6 +19,7 @@ class CocktailPreview : AppCompatActivity() {
 
 
         val position: Int = intent.getIntExtra("position", -1)
+        val jeu: Int = intent.getIntExtra("Jeu", -1)
 
         if(position != -1){
             var image: ImageView = findViewById(R.id.imageView)
@@ -25,6 +27,13 @@ class CocktailPreview : AppCompatActivity() {
             var title: TextView = findViewById(R.id.TitleCocktail)
             title.setText(titles[position])
         }
+        if(jeu != -1){
+            var image: ImageView = findViewById(R.id.imageView)
+            image.visibility = View.GONE
+            var title: TextView = findViewById(R.id.TitleCocktail)
+            title.setText("Jeu")
+        }
+
 
     }
 

@@ -3,6 +3,7 @@ package uqac.dim.partysurvivor
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -25,10 +26,14 @@ class ChoixJeu : AppCompatActivity() {
             val rowIndex: TextView = row.findViewById(R.id.Index)
             rowIndex.text = "1"
             rowbtn.setOnClickListener {
-                //val intent = Intent(v.context, ItemProfiler::class.java)
-                //val tv1 = row.findViewById<View>(R.id.item_hash) as TextView
-                //intent.putExtra("item", tv1.text.toString())
-                //startActivity(intent)
+                val intent = Intent(this, CocktailPreview::class.java)
+                var view:LinearLayout = findViewById(R.id.MainLayout)
+                for (childView in view.children){
+                    val btn: Button = childView.findViewById(R.id.GameBtn)
+                    intent.putExtra("Jeu",1)
+
+                }
+                startActivity(intent)
             }
             rowbtn.text = "Pige dans le lac"
 
