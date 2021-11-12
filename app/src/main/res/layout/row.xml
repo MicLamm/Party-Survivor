@@ -9,8 +9,9 @@
         android:backgroundTint="@color/grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@android:dimen/app_icon_size"
+        android:layout_margin="20dp"
         android:text="Button"
+        android:drawableLeft="@drawable/ic_dice"
         android:textColor="@color/black" />
 
     <TextView

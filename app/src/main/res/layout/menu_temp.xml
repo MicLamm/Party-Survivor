@@ -16,42 +16,45 @@
 
             <Button
                 android:id="@+id/Cocktails"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="@android:dimen/app_icon_size"
+                android:layout_margin="20dp"
                 android:adjustViewBounds="true"
                 android:backgroundTint="@color/grey"
                 android:scaleType="fitCenter"
                 android:text="Cocktails"
+                android:drawableTop="@drawable/ic_drinks"
                 android:textColor="@color/black"
                 android:onClick="onClick"
                 />
 
             <Button
                 android:id="@+id/Games"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="@android:dimen/app_icon_size"
+                android:layout_margin="20dp"
                 android:adjustViewBounds="true"
                 android:backgroundTint="@color/grey"
                 android:scaleType="fitCenter"
                 android:text="Games"
+                android:drawableTop="@drawable/ic_dice"
                 android:textColor="@color/black"
                 android:onClick="onClick"
                 />
 
             <Button
                 android:id="@+id/HelpShake"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="@android:dimen/app_icon_size"
+                android:layout_margin="20dp"
                 android:adjustViewBounds="true"
                 android:backgroundTint="@color/grey"
                 android:scaleType="fitCenter"
                 android:text="Help and Shake"
+                android:drawableTop="@drawable/ic_shake"
                 android:textColor="@color/black"
                 android:onClick="onClick"
                 />

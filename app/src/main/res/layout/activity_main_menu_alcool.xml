@@ -22,7 +22,9 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Scotch and whisky" />
+                android:text="Scotch and whisky"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
             <Button
                 android:id="@+id/liqueurAndCream"
@@ -30,7 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Liqueur and Cream" />
+                android:text="Liqueur and Cream"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
             <Button
                 android:id="@+id/gin"
@@ -38,7 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Gin" />
+                android:text="Gin"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
             <Button
                 android:id="@+id/rum"
@@ -46,7 +52,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Rum" />
+                android:text="Rum"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
             <Button
                 android:id="@+id/vodka"
@@ -54,7 +62,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Vodka" />
+                android:text="Vodka"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
             <Button
                 android:id="@+id/cognacAndBrandy"
@@ -62,7 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Cognac and brandy" />
+                android:text="Cognac and brandy"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
 
             <Button
@@ -71,7 +83,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Eau de vie" />
+                android:text="Eau de vie"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
             <Button
                 android:id="@+id/tequila"
@@ -79,7 +93,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Tequila" />
+                android:text="Tequila"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/grey"/>
 
             <Button
                 android:id="@+id/aniseFlavouredSpirit"
@@ -87,7 +103,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Anise-flavoured spirit" />
+                android:text="Anise-flavoured spirit"
+                android:backgroundTint="@color/grey"
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/absinth"
@@ -95,7 +113,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:text="Absinth" />
+                android:text="Absinth"
+                android:backgroundTint="@color/grey"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
     </ScrollView>
