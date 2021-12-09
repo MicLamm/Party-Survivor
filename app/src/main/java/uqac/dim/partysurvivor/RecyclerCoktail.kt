@@ -48,7 +48,7 @@ class RecyclerCoktail: RecyclerView.Adapter<RecyclerCoktail.ViewHolder>() {
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
 
-            itemView.setOnClickListener{
+            itemDetail.setOnClickListener{
                 val intent = Intent( context, CocktailPreview::class.java)
                 intent.putExtra("position", position)
 

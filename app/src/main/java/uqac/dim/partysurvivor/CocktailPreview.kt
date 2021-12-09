@@ -2,7 +2,10 @@ package uqac.dim.partysurvivor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.TableLayout
 import android.widget.TextView
 
 class CocktailPreview : AppCompatActivity() {
@@ -26,6 +29,18 @@ class CocktailPreview : AppCompatActivity() {
             title.setText(titles[position])
         }
 
+        val Ingredient: Button = findViewById(R.id.ButtonIngredient)
+        val Ingredientview: TableLayout = findViewById(R.id.TableIngredient)
+        val Recette: Button = findViewById(R.id.ButtonRecette)
+        val RecetteView: TextView = findViewById(R.id.ViewRecette)
+        Ingredient.setOnClickListener {
+            RecetteView.visibility = View.GONE;
+            Ingredientview.visibility = View.VISIBLE;
+        }
+        Recette.setOnClickListener {
+            Ingredientview.visibility = View.GONE;
+            RecetteView.visibility = View.VISIBLE;
+        }
     }
 
 
