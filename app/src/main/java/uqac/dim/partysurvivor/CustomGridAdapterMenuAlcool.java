@@ -9,28 +9,48 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomGridAdapterMenuAlcool extends BaseAdapter {
 
     private List<Alcool> listData;
+    private List<AlcoolMenu> listDataMenu;
     private LayoutInflater layoutInflater;
     private Context context;
+    private String type;
 
-    public CustomGridAdapterMenuAlcool(Context aContext,  List<Alcool> listData) {
+    public CustomGridAdapterMenuAlcool(Context aContext,  List<Alcool> listData, List<AlcoolMenu> listDataMenu, String type) {
         this.context = aContext;
         this.listData = listData;
+        this.listDataMenu = listDataMenu;
+        this.type = type;
         layoutInflater = LayoutInflater.from(aContext);
     }
 
     @Override
     public int getCount() {
-        return listData.size();
+        if(type.equals("menu")){
+            return listDataMenu.size();
+        }
+        else{
+            return listData.size();
+        }
     }
 
     @Override
     public Object getItem(int position) {
-        return listData.get(position);
+        if(type.equals("menu")){
+            return listDataMenu.get(position);
+        }
+        else{
+            return listData.get(position);
+        }
     }
 
     @Override
@@ -39,6 +59,7 @@ public class CustomGridAdapterMenuAlcool extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
+        //Database database = new Database(new ArrayList<Alcool>());
         ViewHolder holder;
 
         if(convertView == null){
@@ -52,29 +73,48 @@ public class CustomGridAdapterMenuAlcool extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Alcool alcool = this.listData.get(position);
-        holder.alcoolNameView.setText(alcool.getNom());
+        if(type.equals("menu")){
+            AlcoolMenu alcoolmenu = this.listDataMenu.get(position);
+            holder.alcoolNameView.setText(alcoolmenu.getCategoryName());
 
-        int imageId = this.getMipmapResIdByName(alcool.getImageName());
+            Glide.with(context).load(alcoolmenu.getImageUrl()).into(holder.alcoolView);
 
-        holder.alcoolView.setImageResource(imageId);
+        }
+        else {
+            Alcool alcool = this.listData.get(position);
+            holder.alcoolNameView.setText(alcool.getNom());
+
+            Glide.with(context).load(alcool.getImageUrl()).into(holder.alcoolView);
+        }
+
+
 
         return convertView;
     }
 
-    private int getMipmapResIdByName(String resName) {
+    //Ancien moyen d'appeler les images en local
+    /*private int getMipmapResIdByName(String resName) {
 
         String pkgName = context.getPackageName();
 
         int resID = context.getResources().getIdentifier(resName, "mipmap", pkgName);
         Log.i("CustomGridView", "Res Name: "+ resName + "==> Res ID = "+ resID);
         return resID;
-    }
+    }*/
 
 
     static class ViewHolder {
+        public ImageView imageView;
         ImageView alcoolView;
         TextView alcoolNameView;
+
+        static {
+
+        }
+
+
+
+
 
     }
 }

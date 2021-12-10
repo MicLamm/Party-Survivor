@@ -16,10 +16,11 @@ class ChoixTypeJeu : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
+        //val intent = Intent(this, ChoixJeu::class.java)
         val intent = Intent(this, ChoixJeu::class.java)
         when(view){
-            dice -> intent.putExtra("Type",2)
-            card -> intent.putExtra("Type",1)
+            dice -> intent.putExtra("Type","diceGame")
+            card -> intent.putExtra("Type","cardGame")
         }
         startActivity(intent)
     }

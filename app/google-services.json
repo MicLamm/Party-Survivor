@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072240422816",
+    "project_id": "party-survivor",
+    "storage_bucket": "party-survivor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072240422816:android:ede6c1942ace8509367ec5",
+        "android_client_info": {
+          "package_name": "uqac.dim.partysurvivor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072240422816-942dni5frne948udn5s5perqu56o0osm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPjZqnAVLaIZU-vCqZn-ST0KZyMC-6kVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072240422816-942dni5frne948udn5s5perqu56o0osm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

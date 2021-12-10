@@ -24,6 +24,34 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PartySurvivor" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PartySurvivor" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PartySurvivor" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -62,10 +90,14 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\33760\AndroidStudioProjects\Party-Survivor-main\Party-Survivor-main\app" />
     </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="uqac.dim.partysurvivor.addCoktailToBdd" />
+    </key>
     <key name="android.template.1086542716">
       <recent name="uqac.dim.partysurvivor" />
     </key>
     <key name="android.template.-510607251">
+      <recent name="uqac.dim.partysurvivor.addCoktailToBdd" />
       <recent name="uqac.dim.partysurvivor" />
     </key>
   </component>
