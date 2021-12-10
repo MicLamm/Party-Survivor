@@ -39,6 +39,7 @@ class TestAddImage : AppCompatActivity() {
     lateinit var editDetails: EditText
     lateinit var mCurrentPicturePath: String
     lateinit var progressdialog: ProgressDialog
+    var uploadImageTerminate: Boolean = false
 
     var btnSelect: Button? = null
     var btnUpload: Button? = null
@@ -87,7 +88,7 @@ class TestAddImage : AppCompatActivity() {
         btnSelect?.setOnClickListener(View.OnClickListener { SelectImage() })
 
         // on pressing btnUpload uploadImage() is called
-        btnUpload?.setOnClickListener(View.OnClickListener { uploadImage() })
+        btnUpload?.setOnClickListener(View.OnClickListener {  })
 
 
         //formulaire
@@ -128,51 +129,57 @@ class TestAddImage : AppCompatActivity() {
 
         submit.setOnClickListener {
 
-            //récupération et validation des champs du formulaire
-            var notGood: Boolean = false
-            var name: String = editName.getText().toString()
-            var recette: String = editRecette.getText().toString()
-            var details: String = editDetails.getText().toString()
+            uploadImage()
 
-            for (edit in listEditIngredient) {
-                var ingredient: String = edit.getText().toString()
-                listIngredient.add(ingredient)
-            }
+            if(uploadImageTerminate){
+                //récupération et validation des champs du formulaire
+                var notGood: Boolean = false
+                var name: String = editName.getText().toString()
+                var recette: String = editRecette.getText().toString()
+                var details: String = editDetails.getText().toString()
 
-            for (ingredient in listIngredient) {
-                System.out.println("Ingredient : " + ingredient)
-                if (name.equals("") || name == null || recette.equals("") || recette == null || ingredient.equals(
-                        ""
-                    ) || ingredient == null || details.equals("") || details == null
-                ) {
-                    notGood = true
+                for (edit in listEditIngredient) {
+                    var ingredient: String = edit.getText().toString()
+                    listIngredient.add(ingredient)
                 }
+
+                for (ingredient in listIngredient) {
+                    System.out.println("Ingredient : " + ingredient)
+                    if (name.equals("") || name == null || recette.equals("") || recette == null || ingredient.equals(
+                            ""
+                        ) || ingredient == null || details.equals("") || details == null
+                    ) {
+                        notGood = true
+                    }
+                }
+
+                System.out.println("Name : " + name)
+                System.out.println("Details : " + details)
+                System.out.println("recette : " + recette)
+
+                if (!notGood) {
+                    writeNewCoktail(name, details, recette, listIngredient, "url")
+                }
+                else{
+                    Toast
+                        .makeText(
+                            this,
+                            "Attention il faut remplir tout les champs du formulaire avec au moins 1 ingrédient !",
+                            Toast.LENGTH_LONG
+                        )
+                        .show()
+                }
+
+                reinitialisation(
+                    editName,
+                    editDetails,
+                    editRecette,
+                    listEditIngredient,
+                    ingredientContainer
+                )
             }
 
-            System.out.println("Name : " + name)
-            System.out.println("Details : " + details)
-            System.out.println("recette : " + recette)
 
-            if (!notGood) {
-                writeNewCoktail(name, details, recette, listIngredient, "url")
-            }
-            else{
-                Toast
-                    .makeText(
-                        this,
-                        "Attention il faut remplir tout les champs du formulaire avec au moins 1 ingrédient !",
-                        Toast.LENGTH_LONG
-                    )
-                    .show()
-            }
-
-            reinitialisation(
-                editName,
-                editDetails,
-                editRecette,
-                listEditIngredient,
-                ingredientContainer
-            )
 
         }
 
@@ -356,9 +363,10 @@ class TestAddImage : AppCompatActivity() {
                                     + progress.toInt() + "%")
                         )
                     }
+                uploadImageTerminate = true
             }
 
-            getImageUrl()
+
         }
     }
 
