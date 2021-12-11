@@ -14,12 +14,6 @@ import java.io.Serializable
 
 class RecyclerCoktail(var listData: List<Coktail>, var type:String, var listDataGame: List<Game>): RecyclerView.Adapter<RecyclerCoktail.ViewHolder>() {
 
-    private var titles = arrayOf("Cocktail One", "Cocktail Two", "Cocktail Three", "Cocktail Four", "Cocktail Five","Cocktail Six" )
-
-    private var details = arrayOf("Detail of cocktail 1", "Detail of cocktail 2", "Detail of cocktail 3", "Detail of cocktail 4", "Detail of cocktail 5", "Detail of cocktail 6")
-
-    private var images = intArrayOf(R.drawable.blue_lagoon, R.drawable.gin_tonic, R.drawable.margarita, R.drawable.rhum_cola, R.drawable.sex_on_the_beach, R.drawable.mojito)
-
     lateinit var context: Context
 
     var data = Coktail()
@@ -49,9 +43,6 @@ class RecyclerCoktail(var listData: List<Coktail>, var type:String, var listData
             dataGame = listDataGame[position]
         }
 
-
-
-
     //holder.itemImage.setImageResource(images[position])
     }
 
@@ -76,12 +67,8 @@ class RecyclerCoktail(var listData: List<Coktail>, var type:String, var listData
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
 
-
-
             //var bundle : Bundle = Bundle()
             //bundle.putParcelableArrayList("listData", listData)
-
-
 
             if(type.equals("coktail")){
                 itemView.setOnClickListener{
@@ -97,7 +84,6 @@ class RecyclerCoktail(var listData: List<Coktail>, var type:String, var listData
 
                     context.startActivity(intent)
 
-
                     //val position: Int =adapterPosition
 
                     //Toast.makeText(itemView.context, "you clicked on ${titles[position]}", Toast.LENGTH_LONG).show()
@@ -110,13 +96,12 @@ class RecyclerCoktail(var listData: List<Coktail>, var type:String, var listData
                             dataGame = game
                         }
                     }
-                    val intent = Intent( context, CocktailPreview::class.java)
+                    val intent = Intent( context, GamePreview::class.java)
                     intent.putExtra("position", position)
                     intent.putExtra("type", "game")
                     intent.putExtra("dataGame", dataGame)
 
                     context.startActivity(intent)
-
 
                     //val position: Int =adapterPosition
 

@@ -18,12 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PartySurvivor">
         <activity
-            android:name=".addCoktailToBdd.TestAddImage"
+            android:name=".TestAddImage"
             android:exported="true" />
-        <activity
-            android:name=".addCoktailToBdd.AddCoktailActivity"
-            android:exported="true" />
-        <!--
+         <!--
          <activity
             android:name=".Authentification"
             android:exported="true" />
@@ -31,10 +28,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".addCoktailToBdd.AddCoktailActivity"
-            android:exported="true"
-            tools:ignore="DuplicateActivity" />
         <activity
             android:name=".FeaturedDrink"
             android:exported="false" />
@@ -58,6 +51,9 @@
             android:exported="false" />
         <activity
             android:name=".CocktailPreview"
+            android:exported="true" />
+        <activity
+            android:name=".GamePreview"
             android:exported="true" />
         <activity
             android:name=".ChoixJeu"
