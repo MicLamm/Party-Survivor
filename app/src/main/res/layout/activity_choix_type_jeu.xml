@@ -1,49 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="uqac.dim.partysurvivor.ChoixCategorie">
 
-    <ScrollView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/CardBtn"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@android:dimen/app_icon_size"
-                android:adjustViewBounds="true"
-                android:backgroundTint="@color/grey"
-                android:drawableTop="@drawable/cards"
-                android:scaleType="fitCenter"
-                android:text="@string/CardButton"
-                android:textColor="@color/black"
-                android:onClick="onClick"
-                />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/DiceBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@android:dimen/app_icon_size"
-                android:adjustViewBounds="true"
-                android:backgroundTint="@color/grey"
-                android:drawableTop="@drawable/dices"
-                android:scaleType="fitCenter"
-                android:text="@string/DiceButton"
-                android:textColor="@color/black"
-                android:onClick="onClick"
-                />
+                <Button
+                    android:id="@+id/CardBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@android:dimen/app_icon_size"
+                    android:adjustViewBounds="true"
+                    android:backgroundTint="@color/grey"
+                    android:drawableTop="@drawable/cards"
+                    android:scaleType="fitCenter"
+                    android:text="@string/CardButton"
+                    android:textColor="@color/black"
+                    android:onClick="onClick"
+                    />
 
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                <Button
+                    android:id="@+id/DiceBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@android:dimen/app_icon_size"
+                    android:adjustViewBounds="true"
+                    android:backgroundTint="@color/grey"
+                    android:drawableTop="@drawable/dices"
+                    android:scaleType="fitCenter"
+                    android:text="@string/DiceButton"
+                    android:textColor="@color/black"
+                    android:onClick="onClick"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="#FFBB86FC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

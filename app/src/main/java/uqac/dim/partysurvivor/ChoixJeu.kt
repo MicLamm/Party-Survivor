@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ChoixJeu : AppCompatActivity() {
     private var layoutManager : RecyclerView.LayoutManager? = null
@@ -33,7 +34,7 @@ class ChoixJeu : AppCompatActivity() {
 
         //recycler view avec bdd
         val database = FirebaseDatabase.getInstance()
-        val refAlcool = database.getReference("game/"+Type)
+        val refAlcool = database.getReference("game/" + Type)
         refAlcool.get().addOnCompleteListener { task ->
             var games: ArrayList<Game> = ArrayList()
             if (!task.isSuccessful) {
@@ -59,6 +60,34 @@ class ChoixJeu : AppCompatActivity() {
             adapter = RecyclerGame(game_details)
             recyclerView.setAdapter(adapter)
 
+
+            val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+            navigation.selectedItemId = R.id.ic_2
+            navigation.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.ic_1 -> {
+                        val a = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                        startActivity(a)
+                    }
+                    R.id.ic_2 -> {
+                        val a = Intent(this@ChoixJeu, ChoixTypeJeu::class.java)
+                        startActivity(a)
+                    }
+                    R.id.ic_3 -> {
+                        val b = Intent(this@ChoixJeu, FeaturedDrink::class.java)
+                        startActivity(b)
+                    }
+                    R.id.ic_4 -> {
+                        val b = Intent(this@ChoixJeu, MainActivityAlcoolMenu::class.java)
+                        startActivity(b)
+                    }
+                    R.id.ic_5 -> {
+                        val b = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                        startActivity(b)
+                    }
+                }
+                false
+            }
 
         }
 

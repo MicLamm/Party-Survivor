@@ -38,9 +38,6 @@
             android:name=".MainActivityAlcoolMenu"
             android:exported="false" />
         <activity
-            android:name=".menu_temp"
-            android:exported="false" />
-        <activity
             android:name=".ChoixFavoris"
             android:exported="false" />
         <activity

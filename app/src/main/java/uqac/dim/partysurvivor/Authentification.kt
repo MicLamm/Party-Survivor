@@ -56,7 +56,7 @@ class Authentification : AppCompatActivity() {
     }
 
     fun showNotification(message : String){
-        val mainLayout: View? = findViewById(R.id.mainLayout)
+        val mainLayout: View? = findViewById(R.id.container)
         val authentificationLayout: View? = findViewById(R.id.authentificationLayout)
         if (mainLayout != null) {
             Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show()

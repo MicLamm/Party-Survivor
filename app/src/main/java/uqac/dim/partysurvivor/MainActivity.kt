@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var Game: Button
@@ -22,6 +23,34 @@ class MainActivity : AppCompatActivity() {
         Featured = findViewById(R.id.Cocktails)
         Drink = findViewById(R.id.HelpShake)
         AddCoktail = findViewById(R.id.addCoktail)
+
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_1
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@MainActivity, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@MainActivity, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@MainActivity, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@MainActivity, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@MainActivity, ChoixCategorie::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
     }
 
     fun onClick(view: View){
