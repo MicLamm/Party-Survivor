@@ -20,9 +20,6 @@
         <activity
             android:name=".addCoktailToBdd.TestAddImage"
             android:exported="true" />
-        <activity
-            android:name=".addCoktailToBdd.AddCoktailActivity"
-            android:exported="true" />
         <!--
          <activity
             android:name=".Authentification"
@@ -31,10 +28,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".addCoktailToBdd.AddCoktailActivity"
-            android:exported="true"
-            tools:ignore="DuplicateActivity" />
         <activity
             android:name=".FeaturedDrink"
             android:exported="false" />
