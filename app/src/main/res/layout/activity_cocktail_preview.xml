@@ -52,29 +52,31 @@
         app:layout_constraintTop_toBottomOf="@+id/view">
 
 
-        <TextView
-            android:id="@+id/textView4"
+        <Button
+            android:id="@+id/ingredient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/raleway"
             android:text="Ingredients"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="15dp"
+            android:onClick="hideIngredient"/>
 
-        <TextView
-            android:id="@+id/textView3"
+        <Button
+            android:id="@+id/recette"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/raleway"
             android:text="Recette"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="15dp"
+            android:onClick="hideRecette"/>
     </LinearLayout>
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,22 +84,26 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TableLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/ingredientView"
+                android:scrollbars="vertical"
+                android:layout_width="310dp"
+                android:layout_height="300dp"
+                android:text="" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="Ingrédient 1" />
-            </TableRow>
+      *
 
-            <TableRow
+            <TextView
+                android:id="@+id/recetteView"
+                android:layout_width="310dp"
+                android:layout_height="300dp"
+                android:text="" />
+
+
+            <!--<TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -161,8 +167,8 @@
                     android:layout_width="300dp"
                     android:layout_height="25dp"
                     android:text="Ingrédient 7" />
-            </TableRow>
+            </TableRow>-->
         </TableLayout>
-    </HorizontalScrollView>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

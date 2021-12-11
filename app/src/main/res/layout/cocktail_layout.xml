@@ -32,11 +32,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/item_image"
             android:layout_marginStart="16dp"
-            android:textSize="30sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="236dp"
-            android:layout_height="16dp"
+            android:layout_height="60dp"
             android:id="@+id/item_detail"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"

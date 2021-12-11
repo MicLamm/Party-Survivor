@@ -6,118 +6,179 @@
     android:layout_height="match_parent">
 
 
-    <ScrollView
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-
-            <Button
-                android:id="@+id/scotchAndWhisky"
-                android:layout_width="250dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Scotch and whisky"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/liqueurAndCream"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Liqueur and Cream"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
-
-            <Button
-                android:id="@+id/gin"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Gin"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
-
-            <Button
-                android:id="@+id/rum"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Rum"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
-
-            <Button
-                android:id="@+id/vodka"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Vodka"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
-
-            <Button
-                android:id="@+id/cognacAndBrandy"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Cognac and brandy"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
 
-            <Button
-                android:id="@+id/eauDeVie"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Eau de vie"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
+                    <Button
+                        android:id="@+id/scotchAndWhisky"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Scotch and whisky"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
 
-            <Button
-                android:id="@+id/tequila"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Tequila"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/grey"/>
+                    <Button
+                        android:id="@+id/liqueurAndCream"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
 
-            <Button
-                android:id="@+id/aniseFlavouredSpirit"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Anise-flavoured spirit"
-                android:backgroundTint="@color/grey"
-                android:textColor="@color/black"/>
+                        android:text="Liqueur and Cream"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
 
-            <Button
-                android:id="@+id/absinth"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="Absinth"
-                android:backgroundTint="@color/grey"
-                android:textColor="@color/black"/>
+                </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/gin"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Gin"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
+
+                    <Button
+                        android:id="@+id/rum"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Rum"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/vodka"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Vodka"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
+
+                    <Button
+                        android:id="@+id/cognacAndBrandy"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Cognac and brandy"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:id="@+id/eauDeVie"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Eau de vie"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
+
+                    <Button
+                        android:id="@+id/tequila"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Tequila"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/grey"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/aniseFlavouredSpirit"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Anise-flavoured spirit"
+                        android:backgroundTint="@color/grey"
+                        android:textColor="@color/black"/>
+
+                    <Button
+                        android:id="@+id/absinth"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:text="Absinth"
+                        android:backgroundTint="@color/grey"
+                        android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+        </GridLayout>
+    </ScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
