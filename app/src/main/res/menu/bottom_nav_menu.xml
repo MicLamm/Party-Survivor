@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_1"
+        android:enabled="true"
+        android:icon="@drawable/cards"
+        android:title="@string/ic_1" />
+
+    <item
+        android:id="@+id/ic_2"
+        android:enabled="true"
+        android:icon="@drawable/ic_dice"
+        android:title="@string/ic_2" />
+
+    <item
+        android:id="@+id/ic_3"
+        android:enabled="true"
+        android:icon="@drawable/ic_drinks"
+        android:title="@string/ic_3" />
+
+    <item
+        android:id="@+id/ic_4"
+        android:enabled="true"
+        android:icon="@drawable/ic_shake"
+        android:title="@string/ic_4" />
+
+    <item
+        android:id="@+id/ic_5"
+        android:enabled="true"
+        android:icon="@drawable/cards"
+        android:title="@string/ic_5" />
+
+</menu>

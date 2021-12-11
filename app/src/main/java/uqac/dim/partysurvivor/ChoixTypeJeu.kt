@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ChoixTypeJeu : AppCompatActivity() {
     lateinit var dice: View
@@ -13,6 +14,32 @@ class ChoixTypeJeu : AppCompatActivity() {
         setContentView(R.layout.activity_choix_type_jeu)
         dice = findViewById(R.id.DiceBtn)
         card = findViewById(R.id.CardBtn)
+
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_2
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@ChoixTypeJeu, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@ChoixTypeJeu, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@ChoixTypeJeu, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@ChoixTypeJeu, ChoixCategorie::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
     }
 
     fun onClick(view: View) {

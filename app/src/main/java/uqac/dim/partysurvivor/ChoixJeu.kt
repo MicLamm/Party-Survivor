@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.core.view.children
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ChoixJeu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,33 @@ class ChoixJeu : AppCompatActivity() {
             view.addView(row,0)
         }
 
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_2
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@ChoixJeu, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@ChoixJeu, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@ChoixJeu, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
 
     }
 

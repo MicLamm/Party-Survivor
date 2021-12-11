@@ -1,11 +1,13 @@
 package uqac.dim.partysurvivor
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ActivityListAlcool : AppCompatActivity(){
 
@@ -39,6 +41,34 @@ class ActivityListAlcool : AppCompatActivity(){
                             , Toast.LENGTH_LONG
                 ).show()*/
             }
+
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_3
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@ActivityListAlcool, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@ActivityListAlcool, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@ActivityListAlcool, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@ActivityListAlcool, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@ActivityListAlcool, ChoixCategorie::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
 
     }
 

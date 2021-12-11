@@ -1,10 +1,12 @@
 package uqac.dim.partysurvivor
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CocktailPreview : AppCompatActivity() {
     private var titles = arrayOf("Cocktail One", "Cocktail Two", "Cocktail Three", "Cocktail Four", "Cocktail Five","Cocktail Six" )
@@ -34,6 +36,33 @@ class CocktailPreview : AppCompatActivity() {
             title.setText("Jeu")
         }
 
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_3
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@CocktailPreview, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@CocktailPreview, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@CocktailPreview, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@CocktailPreview, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@CocktailPreview, ChoixCategorie::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
 
     }
 
