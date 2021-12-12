@@ -48,7 +48,7 @@ class GamePreview  : AppCompatActivity() {
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-        navigation.selectedItemId = R.id.ic_3
+        navigation.selectedItemId = R.id.ic_2
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {

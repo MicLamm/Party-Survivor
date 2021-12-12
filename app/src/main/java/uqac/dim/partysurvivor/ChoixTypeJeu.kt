@@ -16,6 +16,7 @@ class ChoixTypeJeu : AppCompatActivity() {
         card = findViewById(R.id.CardBtn)
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_2
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
@@ -34,7 +35,7 @@ class ChoixTypeJeu : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@ChoixTypeJeu, ChoixCategorie::class.java)
+                    val b = Intent(this@ChoixTypeJeu, TestAddImage::class.java)
                     startActivity(b)
                 }
             }

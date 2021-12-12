@@ -25,48 +25,6 @@ class ActivityListAlcool : AppCompatActivity(){
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
-        //val jameson = findViewById<ImageView>(android.R.id.jameson.png)
-        //jameson.setImageResource(android.R.drawable.jameson.png)
-        //val image1: Drawable? = ResourcesCompat.getDrawable(resources, R.drawable.jameson, null)
-        //var alcool1 = Alcool("Whisky", "Jameson", image1)
-
-
-        //var db : Database = Database(ArrayList<Alcool>());
-
-
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference refAlcool = database.getReference("alcool/"+type);
-        //System.out.println("la référence de la database : "+refAlcool);
-        /*ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                setAlcools(new ArrayList<Alcool>());
-                ArrayList<Alcool> alcool = new ArrayList();
-                if(dataSnapshot.exists()){
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        AlcoolImage alcoolImage = snapshot.getValue(AlcoolImage.class);
-                        //System.out.println("nom : "+snapshot.getKey() +" "+"url de l'image :"+alcoolImage.imageUrl);
-
-                        Alcool alcool1 = new Alcool(type, snapshot.getKey(), alcoolImage.imageUrl);
-                        //alcool.add(alcool1);
-                        alcools.add(alcool1);
-
-                        //setAlcools(alcool1);
-                    }
-                }
-                //System.out.println("########### alcools : "+alcools);
-                setAlcools(alcool);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-
-        refAlcool.addValueEventListener(postListener);*/
-
-
         //Lecture des données des alcools et envoie de la liste à CustomGrid pour affichage
         var type = getIdButton();
 
@@ -86,6 +44,7 @@ class ActivityListAlcool : AppCompatActivity(){
                     val alcool1 = Alcool(type, snapshot.key!!, alcoolImage!!.imageUrl)
                     alcools.add(alcool1)
                 }
+                System.out.println("RESULTAT DE LA LISTE D ALCOOL : "+alcools)
             }
 
             val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
@@ -115,7 +74,6 @@ class ActivityListAlcool : AppCompatActivity(){
                 }
                 false
             }
-
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -153,54 +111,4 @@ class ActivityListAlcool : AppCompatActivity(){
         }
         return idButton
     }
-
-
-
-    /*fun getListData(idButton:String): List<Alcool>{
-
-        var database = Database();
-
-        database.readAlcool("rum");
-
-        var list = ArrayList<Alcool>()
-        var finalList = ArrayList<Alcool>()
-        var ballantine = Alcool("scotchAndWhisky", "Ballantine", "ballantine")
-        var crownRoyal = Alcool("scotchAndWhisky", "Crown Royal", "crown_royale")
-        var grantsFamily = Alcool("scotchAndWhisky", "Grant's Family", "grants_family")
-        var jameson = Alcool("scotchAndWhisky", "Jameson", "jameson")
-        var johnnieWalker = Alcool("scotchAndWhisky", "Johnnnie Walker", "johnnie_walker")
-        var bacardi = Alcool("rum", "Bacardi", "bacardi")
-        var captainMorgan = Alcool("rum", "Captain Morgan", "captain_morgan")
-        var sourPuss = Alcool("liqueurAndCream", "Sour Puss", "sour_puss")
-        var sortilege = Alcool("liqueurAndCream", "Sortilège", "sortilege")
-        var beefeater = Alcool("gin", "Beefeater", "beefeater")
-        var bombay = Alcool("gin", "Bombay", "bombay")
-        var meaghers = Alcool("liqueurAndCream", "Meaghers", "meaghers")
-
-
-
-        list.add(ballantine)
-        list.add(crownRoyal)
-        list.add(grantsFamily)
-        list.add(jameson)
-        list.add(johnnieWalker)
-        list.add(bacardi)
-        list.add(captainMorgan)
-        list.add(sourPuss)
-        list.add(sortilege)
-        list.add(beefeater)
-        list.add(bombay)
-        list.add(meaghers)
-
-
-
-        for(alcool in list){
-            if(alcool.type == idButton){
-                finalList.add(alcool)
-            }
-        }
-
-        return finalList
-
-    }*/
 }

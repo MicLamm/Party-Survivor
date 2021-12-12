@@ -59,13 +59,18 @@ class ChoixJeu : AppCompatActivity() {
             System.out.println("ON EST DANS CHOIX TYPE JEU")
             adapter = RecyclerGame(game_details)
             recyclerView.setAdapter(adapter)
+
+
+
+
+
         }
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
         navigation.selectedItemId = R.id.ic_2
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
-                    val a = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                    val a = Intent(this@ChoixJeu, ChoixFavoris::class.java)
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
@@ -81,7 +86,7 @@ class ChoixJeu : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                    val b = Intent(this@ChoixJeu, TestAddImage::class.java)
                     startActivity(b)
                 }
             }

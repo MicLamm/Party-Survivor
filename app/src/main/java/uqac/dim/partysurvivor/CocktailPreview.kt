@@ -8,36 +8,37 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import java.util.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import kotlin.collections.HashMap
+
 
 class CocktailPreview() : AppCompatActivity() {
-    //private var titles = arrayOf("Cocktail One", "Cocktail Two", "Cocktail Three", "Cocktail Four", "Cocktail Five","Cocktail Six" )
-    //private var ingredient_Visible : Boolean = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cocktail_preview)
         var buttonIngredient = findViewById<Button>(R.id.ButtonIngredient)
         var buttonRecette = findViewById<Button>(R.id.ButtonRecette)
+        var buttonAddFavori: Button? = findViewById(R.id.addFavoris)
+
 
         var viewIngredient = findViewById<TextView>(R.id.ViewIngredient)
         var viewRecette = findViewById<TextView>(R.id.ViewRecette)
 
         //à retirer quand deplacement dans GamePreview
         viewIngredient.setMovementMethod(ScrollingMovementMethod())
+        viewRecette.setVisibility(View.INVISIBLE)
 
-        buttonIngredient.setOnClickListener {
-            viewRecette.visibility = View.GONE;
-            viewIngredient.visibility = View.VISIBLE;
-        }
+        var listData:List<Coktail>
         buttonRecette.setOnClickListener {
             viewIngredient.visibility = View.GONE;
             viewRecette.visibility = View.VISIBLE;
         }
-
-
         val position: Int = intent.getIntExtra("position", -1)
         val data:Coktail = intent.getSerializableExtra("data") as Coktail
 
@@ -52,6 +53,11 @@ class CocktailPreview() : AppCompatActivity() {
             ingredient.setText(data.ingredient)
             var recette: TextView = findViewById(R.id.ViewRecette)
             recette.setText(data.recette)
+
+            buttonAddFavori?.setOnClickListener({
+                isFavoris(data, buttonAddFavori)
+                //addFavoris(data, buttonAddFavori)
+            })
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
@@ -59,7 +65,7 @@ class CocktailPreview() : AppCompatActivity() {
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
-                    val a = Intent(this@CocktailPreview, ChoixCategorie::class.java)
+                    val a = Intent(this@CocktailPreview, ChoixFavoris::class.java)
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
@@ -81,6 +87,9 @@ class CocktailPreview() : AppCompatActivity() {
             }
             false
         }
+    }
+
+    fun modif_state_button(button: Button, view:View){
 
     }
 
@@ -104,5 +113,65 @@ class CocktailPreview() : AppCompatActivity() {
             recette.setVisibility(View.GONE)
             ingredient.setVisibility(View.VISIBLE)
         }
+    }
+
+    fun addFavoris(coktail: Coktail, buttonAddFavori: Button){
+        System.out.println("J OBTIENT CA  : "+coktail)
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser?.uid
+
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("favoris")
+        System.out.println("LE UID EST : "+currentUser.toString())
+
+        var favorisMap: HashMap<String, Coktail> = HashMap()
+        favorisMap.put(coktail.coktailName, coktail)
+        ref.child(currentUser.toString()).updateChildren(favorisMap as Map<String, Any>)
+
+        buttonAddFavori.setText("remove from your favoris ?")
+    }
+
+    fun isFavoris(coktail: Coktail, buttonAddFavori: Button){
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser?.uid
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("favoris/"+currentUser.toString())
+
+        ref.get().addOnCompleteListener { task ->
+            var coktails : ArrayList<Coktail> = ArrayList()
+            if (!task.isSuccessful) {
+
+                println("firebase" + "Error getting data" + task.exception)
+
+            } else {
+
+                val snapshotResult = task.result
+                for (snapshot in snapshotResult!!.children) {
+                    var coktail = snapshot.getValue(Coktail::class.java)
+                    if (coktail != null) {
+                        coktails.add(coktail)
+                    }
+                }
+            }
+            val coktail_details: List<Coktail> = coktails;
+            var isFavori: Boolean = false
+            for(item in coktails){
+                System.out.println("COKTAIL NAME : "+item.coktailName)
+                if(coktail.coktailName.equals(item.coktailName)){
+                    isFavori = true
+                    System.out.println("LE COKTAIL EST UN FAVORIS ? true")
+                    buttonAddFavori.setText("remove from your favoris ?")
+                    //addFavoris(coktail, buttonAddFavori)
+                }
+            }
+            if(isFavori){
+                buttonAddFavori.setText("add to favoris ?")
+                //remove
+            }
+            else{
+                addFavoris(coktail, buttonAddFavori)
+            }
+        }
+
     }
 }

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 class ChoixCategorie : AppCompatActivity() {
     lateinit var Game:Button
     lateinit var Drink:Button
@@ -21,8 +20,8 @@ class ChoixCategorie : AppCompatActivity() {
         navigation.selectedItemId = R.id.ic_1
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.ic_3 -> {
-                    val a = Intent(this@ChoixCategorie, ChoixCategorie::class.java)
+                R.id.ic_1 -> {
+                    val a = Intent(this@ChoixCategorie, ChoixFavoris::class.java)
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
@@ -38,7 +37,7 @@ class ChoixCategorie : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@ChoixCategorie, ChoixCategorie::class.java)
+                    val b = Intent(this@ChoixCategorie, TestAddImage::class.java)
                     startActivity(b)
                 }
             }

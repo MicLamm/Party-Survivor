@@ -14,7 +14,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-
 class RecyclerGame(private var listDataGame: List<Game>) : RecyclerView.Adapter<RecyclerGame.ViewHolder>(), Filterable {
 
     lateinit var context: Context

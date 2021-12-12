@@ -49,15 +49,14 @@ class FeaturedDrink : AppCompatActivity() {
             recyclerView.layoutManager = layoutManager
             adapter = RecyclerCoktail(coktail_details)
             recyclerView.adapter = adapter
-
-
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_3
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
-                    val a = Intent(this@FeaturedDrink, ChoixCategorie::class.java)
+                    val a = Intent(this@FeaturedDrink, ChoixFavoris::class.java)
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
@@ -72,7 +71,7 @@ class FeaturedDrink : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@FeaturedDrink, ChoixCategorie::class.java)
+                    val b = Intent(this@FeaturedDrink, TestAddImage::class.java)
                     startActivity(b)
                 }
             }
