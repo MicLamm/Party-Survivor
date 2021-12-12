@@ -130,6 +130,14 @@ class CocktailPreview() : AppCompatActivity() {
 
         buttonAddFavori.setText("remove from your favoris ?")
     }
+    fun removeFavoris(coktail: Coktail){
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser?.uid
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("favoris/"+currentUser.toString())
+
+        ref.child(coktail.coktailName).removeValue()
+    }
 
     fun isFavoris(coktail: Coktail, buttonAddFavori: Button){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -166,7 +174,7 @@ class CocktailPreview() : AppCompatActivity() {
             }
             if(isFavori){
                 buttonAddFavori.setText("add to favoris ?")
-                //remove
+                removeFavoris(coktail)
             }
             else{
                 addFavoris(coktail, buttonAddFavori)

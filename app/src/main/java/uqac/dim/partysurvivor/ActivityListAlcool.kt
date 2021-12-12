@@ -44,7 +44,17 @@ class ActivityListAlcool : AppCompatActivity(){
                     val alcool1 = Alcool(type, snapshot.key!!, alcoolImage!!.imageUrl)
                     alcools.add(alcool1)
                 }
-                System.out.println("RESULTAT DE LA LISTE D ALCOOL : "+alcools)
+                val image_details: List<Alcool> = alcools;
+                val alcoolMenu_details: List<AlcoolMenu> = Arrays.asList()
+                val gridView = findViewById<View>(R.id.gridView) as GridView
+                gridView.adapter = CustomGridAdapterMenuAlcool(this, image_details, alcoolMenu_details, "alcool")
+
+                //quand l'user click sur un gridItem
+                gridView.onItemClickListener =
+                    AdapterView.OnItemClickListener { a, v, position, id ->
+                        val o = gridView.getItemAtPosition(position)
+                        val alcool: Alcool = o as Alcool
+                    }
             }
 
             val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
