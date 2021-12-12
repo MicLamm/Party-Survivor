@@ -59,38 +59,34 @@ class ChoixJeu : AppCompatActivity() {
             System.out.println("ON EST DANS CHOIX TYPE JEU")
             adapter = RecyclerGame(game_details)
             recyclerView.setAdapter(adapter)
-
-
-            val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-            navigation.selectedItemId = R.id.ic_2
-            navigation.setOnItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.ic_1 -> {
-                        val a = Intent(this@ChoixJeu, ChoixCategorie::class.java)
-                        startActivity(a)
-                    }
-                    R.id.ic_2 -> {
-                        val a = Intent(this@ChoixJeu, ChoixTypeJeu::class.java)
-                        startActivity(a)
-                    }
-                    R.id.ic_3 -> {
-                        val b = Intent(this@ChoixJeu, FeaturedDrink::class.java)
-                        startActivity(b)
-                    }
-                    R.id.ic_4 -> {
-                        val b = Intent(this@ChoixJeu, MainActivityAlcoolMenu::class.java)
-                        startActivity(b)
-                    }
-                    R.id.ic_5 -> {
-                        val b = Intent(this@ChoixJeu, ChoixCategorie::class.java)
-                        startActivity(b)
-                    }
-                }
-                false
-            }
-
         }
-
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_2
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@ChoixJeu, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@ChoixJeu, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@ChoixJeu, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
