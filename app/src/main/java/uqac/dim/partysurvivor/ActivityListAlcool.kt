@@ -68,7 +68,7 @@ class ActivityListAlcool : AppCompatActivity(){
                         startActivity(b)
                     }
                     R.id.ic_5 -> {
-                        val b = Intent(this@ActivityListAlcool, ChoixCategorie::class.java)
+                        val b = Intent(this@ActivityListAlcool, TestAddImage::class.java)
                         startActivity(b)
                     }
                 }

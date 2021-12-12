@@ -68,7 +68,7 @@ class GamePreview  : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@GamePreview, ChoixCategorie::class.java)
+                    val b = Intent(this@GamePreview, TestAddImage::class.java)
                     startActivity(b)
                 }
             }

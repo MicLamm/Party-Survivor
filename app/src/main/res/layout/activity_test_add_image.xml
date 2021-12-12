@@ -1,129 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context="uqac.dim.partysurvivor.ChoixCategorie">
 
-    <!--Linear Layout with horizontal orientation
-        and other properties-->
-    <LinearLayout
-        android:id="@+id/layout_button"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:weightSum="2"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
-        <!--Button for choosing image from gallery-->
-
-
-        <!--Button for uploading image-->
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnChoose"
-            android:text="Choose a picture in your Gallery"
+        <!--Linear Layout with horizontal orientation
+            and other properties-->
+        <LinearLayout
+            android:id="@+id/layout_button"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="140dp"
-            tools:layout_editor_absoluteY="252dp"
-            tools:srcCompat="@tools:sample/avatars"
-            tools:ignore="MissingConstraints" />
+            <!--Button for choosing image from gallery-->
 
-        <TextView
+
+            <!--Button for uploading image-->
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The name of your Coktail"/>
+            android:gravity="center_horizontal"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editName"/>
+            <Button
+                android:id="@+id/btnChoose"
+                android:text="Choose a picture in your Gallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Details of your Coktail"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editDetails"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="The receipts of your Coktail"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editRecette"/>
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add an ingredient"
-            android:id="@+id/addIngredient"/>
-
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/editTextContainer">
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="140dp"
+                tools:layout_editor_absoluteY="252dp"
+                tools:srcCompat="@tools:sample/avatars"
+                tools:ignore="MissingConstraints" />
 
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The name of your Coktail"/>
 
-        </ScrollView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editName"/>
 
-        <Button
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Details of your Coktail"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editDetails"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The receipts of your Coktail"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editRecette"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add an ingredient"
+                android:id="@+id/addIngredient"/>
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/editTextContainer">
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/addCoktail"/>
+
+        </LinearLayout>
+
+        <!--Image View for showing image chosen from gallery-->
+        <ImageView
+            android:id="@+id/imgView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/addCoktail"/>
+            android:layout_height="match_parent" />
 
+    </RelativeLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
-            android:background="#FFBB86FC"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/bottom_nav_menu"/>
+<com.google.android.material.bottomnavigation.BottomNavigationView
+android:id="@+id/navigation"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginEnd="0dp"
+android:layout_marginStart="0dp"
+android:background="#FFBB86FC"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+app:menu="@menu/bottom_nav_menu"/>
 
-    </LinearLayout>
-
-    <!--Image View for showing image chosen from gallery-->
-    <ImageView
-        android:id="@+id/imgView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
