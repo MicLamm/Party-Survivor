@@ -1,16 +1,23 @@
 package uqac.dim.partysurvivor
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
+import android.view.View
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class FeaturedDrink : AppCompatActivity() {
     private var layoutManager : RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerCoktail.ViewHolder>? = null
+    lateinit var adapter: RecyclerCoktail
     lateinit var recyclerView: RecyclerView
 
 
@@ -28,7 +35,6 @@ class FeaturedDrink : AppCompatActivity() {
                 println("firebase" + "Error getting data" + task.exception)
 
             } else {
-
                 val snapshotResult = task.result
                 for (snapshot in snapshotResult!!.children) {
                     var coktail = snapshot.getValue(Coktail::class.java)
@@ -39,14 +45,60 @@ class FeaturedDrink : AppCompatActivity() {
             }
 
             val coktail_details: List<Coktail> = coktails;
-            val game_details: List<Game> = Arrays.asList()
             recyclerView = findViewById(R.id.recyclerView)
             layoutManager = LinearLayoutManager(this)
             recyclerView.layoutManager = layoutManager
-            adapter = RecyclerCoktail(coktail_details, "coktail", game_details)
+            adapter = RecyclerCoktail(coktail_details)
             recyclerView.adapter = adapter
 
+            val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+            navigation.selectedItemId = R.id.ic_3
+            navigation.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.ic_3 -> {
+                        val a = Intent(this@FeaturedDrink, ChoixCategorie::class.java)
+                        startActivity(a)
+                    }
+                    R.id.ic_2 -> {
+                        val a = Intent(this@FeaturedDrink, ChoixTypeJeu::class.java)
+                        startActivity(a)
+                    }
+                    R.id.ic_3 -> {
+                    }
+                    R.id.ic_4 -> {
+                        val b = Intent(this@FeaturedDrink, MainActivityAlcoolMenu::class.java)
+                        startActivity(b)
+                    }
+                    R.id.ic_5 -> {
+                        val b = Intent(this@FeaturedDrink, TestAddImage::class.java)
+                        startActivity(b)
+                    }
+                }
+                false
+            }
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.nav_menu,menu)
+
+        val search: MenuItem? = menu?.findItem(R.id.nav_search)
+        val searchView: SearchView = search?.actionView as SearchView
+        searchView.queryHint = "Search something"
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.getFilter().filter(newText)
+                return true
+            }
+
+        })
+
+        return super.onCreateOptionsMenu(menu)
     }
 }

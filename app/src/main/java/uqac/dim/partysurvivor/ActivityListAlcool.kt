@@ -1,5 +1,6 @@
 package uqac.dim.partysurvivor
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -12,6 +13,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class ActivityListAlcool : AppCompatActivity(){
 
@@ -23,7 +26,6 @@ class ActivityListAlcool : AppCompatActivity(){
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
-
         //val jameson = findViewById<ImageView>(android.R.id.jameson.png)
         //jameson.setImageResource(android.R.drawable.jameson.png)
         //val image1: Drawable? = ResourcesCompat.getDrawable(resources, R.drawable.jameson, null)
@@ -31,10 +33,6 @@ class ActivityListAlcool : AppCompatActivity(){
 
 
         //var db : Database = Database(ArrayList<Alcool>());
-
-
-
-
 
 
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -70,14 +68,13 @@ class ActivityListAlcool : AppCompatActivity(){
         refAlcool.addValueEventListener(postListener);*/
 
 
-
         //Lecture des données des alcools et envoie de la liste à CustomGrid pour affichage
         var type = getIdButton();
 
         val database = FirebaseDatabase.getInstance()
         val refAlcool = database.getReference("alcool/$type")
         refAlcool.get().addOnCompleteListener { task ->
-            var alcools : ArrayList<Alcool> = ArrayList()
+            var alcools: ArrayList<Alcool> = ArrayList()
             if (!task.isSuccessful) {
 
                 println("firebase" + "Error getting data" + task.exception)
@@ -90,6 +87,7 @@ class ActivityListAlcool : AppCompatActivity(){
                     val alcool1 = Alcool(type, snapshot.key!!, alcoolImage!!.imageUrl)
                     alcools.add(alcool1)
                 }
+                System.out.println("RESULTAT DE LA LISTE D ALCOOL : "+alcools)
             }
 
             val image_details: List<Alcool> = alcools;
@@ -107,10 +105,37 @@ class ActivityListAlcool : AppCompatActivity(){
                                 , Toast.LENGTH_LONG
                     ).show()*/
                 }
+
         }
 
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_3
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@ActivityListAlcool, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@ActivityListAlcool, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@ActivityListAlcool, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@ActivityListAlcool, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@ActivityListAlcool, TestAddImage::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

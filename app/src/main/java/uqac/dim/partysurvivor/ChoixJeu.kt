@@ -18,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class ChoixJeu : AppCompatActivity() {
     private var layoutManager : RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerCoktail.ViewHolder>? = null
+    lateinit var adapter: RecyclerGame
     lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +35,7 @@ class ChoixJeu : AppCompatActivity() {
 
         //recycler view avec bdd
         val database = FirebaseDatabase.getInstance()
-        val refAlcool = database.getReference("game/"+Type)
+        val refAlcool = database.getReference("game/" + Type)
         refAlcool.get().addOnCompleteListener { task ->
             var games: ArrayList<Game> = ArrayList()
             if (!task.isSuccessful) {
@@ -52,64 +54,47 @@ class ChoixJeu : AppCompatActivity() {
             }
 
             val game_details: List<Game> = games;
-            val coktail_details: List<Coktail> = Arrays.asList()
             recyclerView = findViewById(R.id.recyclerViewGame)
             layoutManager = LinearLayoutManager(this)
             recyclerView.layoutManager = layoutManager
             System.out.println("ON EST DANS CHOIX TYPE JEU")
-            //adapter = RecyclerGame(game_details)
-            adapter = RecyclerCoktail(coktail_details, "game", game_details)
-            recyclerView.adapter = adapter
+            adapter = RecyclerGame(game_details)
+            recyclerView.setAdapter(adapter)
 
 
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*var view = findViewById<LinearLayout>(R.id.MainLayout)
-        val lInflater:LayoutInflater = LayoutInflater.from(applicationContext)
-        for(i in 1..5){
-            val row: View = lInflater.inflate(R.layout.row,view,false)
-            val rowbtn: Button = row.findViewById(R.id.GameBtn)
-            val rowIndex: TextView = row.findViewById(R.id.Index)
-            rowIndex.text = "1"
-            rowbtn.setOnClickListener {
-                val intent = Intent(this, CocktailPreview::class.java)
-                var view:LinearLayout = findViewById(R.id.MainLayout)
-                for (childView in view.children){
-                    val btn: Button = childView.findViewById(R.id.GameBtn)
-                    intent.putExtra("Jeu",1)
-
+            val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+            navigation.selectedItemId = R.id.ic_2
+            navigation.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.ic_1 -> {
+                        val a = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                        startActivity(a)
+                    }
+                    R.id.ic_2 -> {
+                        val a = Intent(this@ChoixJeu, ChoixTypeJeu::class.java)
+                        startActivity(a)
+                    }
+                    R.id.ic_3 -> {
+                        val b = Intent(this@ChoixJeu, FeaturedDrink::class.java)
+                        startActivity(b)
+                    }
+                    R.id.ic_4 -> {
+                        val b = Intent(this@ChoixJeu, MainActivityAlcoolMenu::class.java)
+                        startActivity(b)
+                    }
+                    R.id.ic_5 -> {
+                        val b = Intent(this@ChoixJeu, TestAddImage::class.java)
+                        startActivity(b)
+                    }
                 }
-                startActivity(intent)
+                false
             }
-            rowbtn.text = "Pige dans le lac"
 
-            view.addView(row,0)
         }
-        view = findViewById<LinearLayout>(R.id.OptionalLayout)
-        for(i in 1..5){
-            val row: View = lInflater.inflate(R.layout.row,view,false)
-            val text: Button = row.findViewById(R.id.GameBtn)
-            text.text = "Pige dans le lac"
-
-            view.addView(row,0)
-        }*/
-
 
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu,menu)
 
         val search: MenuItem? = menu?.findItem(R.id.nav_search)
@@ -122,33 +107,12 @@ class ChoixJeu : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                var view:LinearLayout = findViewById(R.id.MainLayout)
-                for (childView in view.children){
-                    val btn: Button = childView.findViewById(R.id.GameBtn)
-                    if (!btn.text.startsWith(newText.toString())){
-                        btn.visibility =View.GONE
-                    }
-                    else{
-                        btn.visibility =View.VISIBLE
-                    }
-
-                }
-                view = findViewById(R.id.OptionalLayout)
-                for (childView in view.children){
-                    val btn: Button = childView.findViewById(R.id.GameBtn)
-                    if (!btn.text.startsWith(newText.toString())){
-                        btn.visibility =View.GONE
-                    }
-                    else{
-                        btn.visibility =View.VISIBLE
-                    }
-
-                }
+                adapter.getFilter().filter(newText)
                 return true
             }
 
         })
 
         return super.onCreateOptionsMenu(menu)
-    }*/
+    }
 }

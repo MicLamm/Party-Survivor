@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class MainActivityAlcoolMenu: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
@@ -86,6 +88,32 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
             monIntent1.putExtra("idButton", "rum")
             startActivity(monIntent1)
         }*/
+
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_4
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@MainActivityAlcoolMenu, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@MainActivityAlcoolMenu, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@MainActivityAlcoolMenu, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@MainActivityAlcoolMenu, TestAddImage::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
 
     }
 }

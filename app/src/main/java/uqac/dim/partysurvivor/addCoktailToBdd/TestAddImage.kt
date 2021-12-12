@@ -1,35 +1,54 @@
 package uqac.dim.partysurvivor.addCoktailToBdd
 
 import android.Manifest
+import android.app.AlertDialog
+import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.icu.lang.UCharacter
+import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.ActionBar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import uqac.dim.partysurvivor.R
 import java.io.IOException
 import java.util.*
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.FirebaseDatabase
-import uqac.dim.partysurvivor.Coktail
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
+import java.io.File
 import kotlin.collections.HashMap
+import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import uqac.dim.partysurvivor.*
 
 
 class TestAddImage : AppCompatActivity() {
 
+    //permission user
+    val RC_IMAGE_PERMS = 100
+    val RC_CHOOSE_PHOTO = 200
     val REQUEST_IMAGE_CAPTURE = 123
+    val REQUEST_ID_READ_WRITE_PERMISSION = 99
+    val PERMS:String = Manifest.permission.READ_EXTERNAL_STORAGE
+
+
     //lateinit var imageView: ImageView
     lateinit var buttonTakePicture: Button
     lateinit var addIngredient: Button
@@ -37,16 +56,14 @@ class TestAddImage : AppCompatActivity() {
     lateinit var editName: EditText
     lateinit var editRecette: EditText
     lateinit var editDetails: EditText
-    lateinit var mCurrentPicturePath: String
-    lateinit var progressdialog: ProgressDialog
     var uploadImageTerminate: Boolean = false
+
 
     var btnSelect: Button? = null
     var btnUpload: Button? = null
 
     // view for image view
     private var imageView: ImageView? = null
-
     private var imageLink: String? = null
 
     // Uri indicates, where the image will be picked from
@@ -61,9 +78,12 @@ class TestAddImage : AppCompatActivity() {
     var storage: FirebaseStorage? = null
     var storageReference: StorageReference? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_add_image)
+
 
 
         val actionBar: ActionBar?
@@ -75,9 +95,10 @@ class TestAddImage : AppCompatActivity() {
             actionBar.setBackgroundDrawable(colorDrawable)
         }
 
+        checkPermissionAccessGallery()
+
         // initialise views
         btnSelect = findViewById(R.id.btnChoose)
-        btnUpload = findViewById(R.id.btnUpload)
         imageView = findViewById(R.id.imgView)
 
         // get the Firebase  storage reference
@@ -85,7 +106,9 @@ class TestAddImage : AppCompatActivity() {
         storageReference = storage!!.reference
 
         // on pressing btnSelect SelectImage() is called
-        btnSelect?.setOnClickListener(View.OnClickListener { SelectImage() })
+        btnSelect?.setOnClickListener(View.OnClickListener {
+            //askPermission()
+            SelectImage() })
 
         // on pressing btnUpload uploadImage() is called
         btnUpload?.setOnClickListener(View.OnClickListener {  })
@@ -94,20 +117,6 @@ class TestAddImage : AppCompatActivity() {
         //formulaire
         imageView = findViewById(R.id.imageView2)
 
-
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            buttonTakePicture.setEnabled(false)
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                0
-            )
-        }
 
 
         //Formulaire d'ajout de coktail
@@ -127,9 +136,10 @@ class TestAddImage : AppCompatActivity() {
             listEditIngredient.add(edit)
         })
 
-        submit.setOnClickListener {
 
+        submit.setOnClickListener {
             uploadImage()
+            System.out.println("VALEUR DE UPLOADIMAGE : "+uploadImageTerminate)
 
             if(uploadImageTerminate){
                 //récupération et validation des champs du formulaire
@@ -183,7 +193,82 @@ class TestAddImage : AppCompatActivity() {
 
         }
 
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_3
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@TestAddImage, ChoixCategorie::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_2 -> {
+                    val a = Intent(this@TestAddImage, ChoixTypeJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    val b = Intent(this@TestAddImage, FeaturedDrink::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@TestAddImage, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@TestAddImage, TestAddImage::class.java)
+                    startActivity(b)
+                }
+            }
+            false
+        }
+
     }
+
+    //demande de permission à l'user pour récupérer une image de sa galerie
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+
+    }
+
+    fun checkPermissionAccessGallery(){
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            btnSelect?.setEnabled(false)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                0
+            )
+        }
+    }
+
+
+
+
+    fun askPermission(){
+        var readPermission:Int =  ActivityCompat.checkSelfPermission(this,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+        var writePermission:Int =  ActivityCompat.checkSelfPermission(this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        if(writePermission!=PackageManager.PERMISSION_GRANTED || readPermission!=PackageManager.PERMISSION_GRANTED){
+            this.requestPermissions(
+                arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ),
+                REQUEST_ID_READ_WRITE_PERMISSION
+            )
+            return
+        }
+
+    }
+
+
+
 
     fun writeNewCoktail(name: String, details: String, recette: String, listIngredient: ArrayList<String>, imageUrl: String){
 
@@ -193,18 +278,21 @@ class TestAddImage : AppCompatActivity() {
             ingredients = ingredients + ingredient + "\n"
         }
         System.out.println(ingredients)
-        var newCoktail: Coktail = Coktail(name, recette, details, imageUrl, ingredients)
+        var newCoktail: Coktail = Coktail()
+
+        newCoktail.recette = recette
+        newCoktail.ingredient = ingredients
+        newCoktail.detailsCoktail = details
+        newCoktail.coktailName = name
+
 
         //ajout du coktail à la bdd
+
+
         val database = FirebaseDatabase.getInstance()
         val ref1 = database.getReference("coktail")
 
-        var key = ref1.push().key
-
-
-
         //recupération de l'url de l'image et ajout à la bdd
-
         val ref = storageReference
             ?.child(
                 "imageCoktail/"
@@ -237,10 +325,9 @@ class TestAddImage : AppCompatActivity() {
             }
         }
 
-
-
     }
 
+    //réinitialise les champs du formulaire
     fun reinitialisation(name: EditText, details: EditText, recette: EditText, listEditIngredient: ArrayList<EditText>, layout: LinearLayout){
         name.setText("")
         details.setText("")
@@ -251,20 +338,34 @@ class TestAddImage : AppCompatActivity() {
         }
     }
 
+
+
     // Select Image method
     private fun SelectImage() {
 
-        // Defining Implicit Intent to mobile gallery
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(
-            Intent.createChooser(
-                intent,
-                "Select Image from here..."
-            ),
-            PICK_IMAGE_REQUEST
-        )
+
+        var dialog: AlertDialog.Builder = AlertDialog.Builder(this)
+        dialog.setTitle("Allow the application to access gallery ? ")
+
+        dialog.setPositiveButton("YES",
+            DialogInterface.OnClickListener { dialog, which -> // Write your code here to execute after dialog
+                // Defining Implicit Intent to mobile gallery
+                val intent = Intent()
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startActivityForResult(Intent.createChooser(intent, "Select Image from here..."), PICK_IMAGE_REQUEST)
+
+            })
+
+        dialog.setNegativeButton("NO", DialogInterface.OnClickListener { dialog, which ->
+            var intent: Intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(getApplicationContext(),
+                "You cant add a new coktail if you don t take a picture", Toast.LENGTH_SHORT)
+                .show();
+        })
+        dialog.show()
+
     }
 
     // Override onActivityResult method
@@ -278,7 +379,6 @@ class TestAddImage : AppCompatActivity() {
             resultCode,
             data
         )
-
         // checking request code and result code
         // if request code is PICK_IMAGE_REQUEST and
         // resultCode is RESULT_OK
@@ -288,7 +388,6 @@ class TestAddImage : AppCompatActivity() {
             // Get the Uri of data
             filePath = data.data
             try {
-
                 // Setting image on image view using Bitmap
                 val bitmap = MediaStore.Images.Media
                     .getBitmap(
@@ -340,6 +439,7 @@ class TestAddImage : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             )
                             .show()
+
                     }
                     .addOnFailureListener { e -> // Error, Image not uploaded
                         progressDialog.dismiss()
@@ -365,32 +465,6 @@ class TestAddImage : AppCompatActivity() {
                     }
                 uploadImageTerminate = true
             }
-
-
         }
-    }
-
-    fun getImageUrl(){
-
-        if(cheminImageName!=null){
-            val ref = storageReference
-                ?.child(
-                    "imageCoktail/"
-                            + cheminImageName
-                )
-
-            if (ref != null) {
-                ref.putFile(filePath!!)
-                    .addOnSuccessListener {
-                        val result = it.metadata!!.reference!!.downloadUrl;
-                        result.addOnSuccessListener {
-
-                            imageLink = it.toString()
-                            System.out.println("DANS LE ONSUCCESS : "+imageLink)
-                        }
-                    }
-            }
-        }
-
     }
 }

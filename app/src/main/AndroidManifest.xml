@@ -21,20 +21,8 @@
             android:name=".addCoktailToBdd.TestAddImage"
             android:exported="true" />
         <activity
-            android:name=".addCoktailToBdd.AddCoktailActivity"
-            android:exported="true" />
-        <!--
-         <activity
-            android:name=".Authentification"
-            android:exported="true" />
-        -->
-        <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".addCoktailToBdd.AddCoktailActivity"
-            android:exported="true"
-            tools:ignore="DuplicateActivity" />
         <activity
             android:name=".FeaturedDrink"
             android:exported="false" />
@@ -43,9 +31,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivityAlcoolMenu"
-            android:exported="false" />
-        <activity
-            android:name=".menu_temp"
             android:exported="false" />
         <activity
             android:name=".ChoixFavoris"
@@ -65,17 +50,6 @@
         <activity
             android:name=".ChoixTypeJeu"
             android:exported="true" />
-        <!--
-<activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        -->
         <activity
             android:name=".Authentification"
             android:exported="true">
