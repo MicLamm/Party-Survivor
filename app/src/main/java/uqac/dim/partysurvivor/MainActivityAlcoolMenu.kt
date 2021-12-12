@@ -75,7 +75,7 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
                     false
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@MainActivityAlcoolMenu, ChoixCategorie::class.java)
+                    val b = Intent(this@MainActivityAlcoolMenu, TestAddImage::class.java)
                     startActivity(b)
                 }
             }

@@ -81,7 +81,7 @@ class CocktailPreview() : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@CocktailPreview, ChoixCategorie::class.java)
+                    val b = Intent(this@CocktailPreview, TestAddImage::class.java)
                     startActivity(b)
                 }
             }

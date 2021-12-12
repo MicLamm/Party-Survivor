@@ -194,7 +194,7 @@ class TestAddImage : AppCompatActivity() {
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-        navigation.selectedItemId = R.id.ic_3
+        navigation.selectedItemId = R.id.ic_5
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
