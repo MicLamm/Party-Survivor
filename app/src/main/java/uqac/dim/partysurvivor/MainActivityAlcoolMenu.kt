@@ -55,39 +55,6 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
                 }
         }
 
-
-
-       /* var buttonScotchAndWhisky = findViewById<Button>(R.id.scotchAndWhisky)
-        var buttonLiqueurAndCream = findViewById<Button>(R.id.liqueurAndCream)
-        var buttonGin = findViewById<Button>(R.id.gin)
-        var buttonRum = findViewById<Button>(R.id.rum)
-
-
-        val monIntent1: Intent = Intent(this, ActivityListAlcool::class.java)
-
-
-        buttonScotchAndWhisky.setOnClickListener{
-            monIntent1.putExtra("idButton", "scotchAndWhisky")
-            startActivity(monIntent1)
-            //finish()
-
-        }
-
-        buttonLiqueurAndCream.setOnClickListener{
-            monIntent1.putExtra("idButton", "liqueurAndCream")
-            startActivity(monIntent1)
-        }
-
-        buttonGin.setOnClickListener{
-            monIntent1.putExtra("idButton", "gin")
-            startActivity(monIntent1)
-        }
-
-        buttonRum.setOnClickListener{
-            monIntent1.putExtra("idButton", "rum")
-            startActivity(monIntent1)
-        }*/
-
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
         navigation.selectedItemId = R.id.ic_4
         navigation.setOnItemSelectedListener { item ->

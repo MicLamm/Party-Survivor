@@ -54,10 +54,9 @@ class FeaturedDrink : AppCompatActivity() {
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-        navigation.selectedItemId = R.id.ic_3
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.ic_3 -> {
+                R.id.ic_1 -> {
                     val a = Intent(this@FeaturedDrink, ChoixCategorie::class.java)
                     startActivity(a)
                 }
@@ -66,6 +65,7 @@ class FeaturedDrink : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_3 -> {
+                    false
                 }
                 R.id.ic_4 -> {
                     val b = Intent(this@FeaturedDrink, MainActivityAlcoolMenu::class.java)

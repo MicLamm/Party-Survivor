@@ -16,7 +16,6 @@ class ChoixTypeJeu : AppCompatActivity() {
         card = findViewById(R.id.CardBtn)
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-        navigation.selectedItemId = R.id.ic_2
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
@@ -24,6 +23,7 @@ class ChoixTypeJeu : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
+                    false
                 }
                 R.id.ic_3 -> {
                     val b = Intent(this@ChoixTypeJeu, FeaturedDrink::class.java)

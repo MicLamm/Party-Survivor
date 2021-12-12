@@ -39,44 +39,19 @@ class CocktailPreview() : AppCompatActivity() {
 
 
         val position: Int = intent.getIntExtra("position", -1)
-        val type: String = intent.getStringExtra("type") as String
+        val data:Coktail = intent.getSerializableExtra("data") as Coktail
 
-        if(type.equals("coktail")){
-            val data:Coktail = intent.getSerializableExtra("data") as Coktail
+        if(position != -1){
+            var image: ImageView = findViewById(R.id.imageView)
+            Glide.with(this).load(data.imageUrl).into(image)
 
-            if(position != -1){
-                var image: ImageView = findViewById(R.id.imageView)
-                Glide.with(this).load(data.imageUrl).into(image)
+            var title: TextView = findViewById(R.id.TitleCocktail)
+            title.setText(data.coktailName)
 
-                var title: TextView = findViewById(R.id.TitleCocktail)
-                title.setText(data.coktailName)
-
-                var ingredient: TextView = findViewById(R.id.ViewIngredient)
-                ingredient.setText(data.ingredient)
-                var recette: TextView = findViewById(R.id.ViewRecette)
-                recette.setText(data.recette)
-            }
-        }
-        else{
-            val dataGame:Game = intent.getSerializableExtra("dataGame") as Game
-
-            if(position != -1){
-                var image: ImageView = findViewById(R.id.imageView)
-                Glide.with(this).load(dataGame.imageUrl).into(image)
-
-                var title: TextView = findViewById(R.id.TitleCocktail)
-                title.setText(dataGame.gameName)
-
-                var buttonIngredient: Button = findViewById(R.id.ButtonIngredient)
-                buttonIngredient.setText("regles")
-                var buttonRecette: Button = findViewById(R.id.ButtonRecette)
-                buttonRecette.setText("gagner ?")
-
-                var ingredient: TextView = findViewById(R.id.ViewIngredient)
-                ingredient.setText(dataGame.regle)
-                var recette: TextView = findViewById(R.id.ViewRecette)
-                recette.setText(dataGame.gagner)
-            }
+            var ingredient: TextView = findViewById(R.id.ViewIngredient)
+            ingredient.setText(data.ingredient)
+            var recette: TextView = findViewById(R.id.ViewRecette)
+            recette.setText(data.recette)
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView

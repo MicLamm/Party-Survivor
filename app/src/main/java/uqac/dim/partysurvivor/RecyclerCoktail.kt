@@ -95,7 +95,6 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
                 val intent = Intent(context, CocktailPreview::class.java)
                 intent.putExtra("position", position)
                 intent.putExtra("data", data)
-                intent.putExtra("type", "coktail")
                 context.startActivity(intent)
                 //Toast.makeText(itemView.context, "you clicked on ${titles[position]}", Toast.LENGTH_LONG).show()
             }
