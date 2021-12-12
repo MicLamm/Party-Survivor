@@ -93,6 +93,7 @@ class RecyclerGame(private var listDataGame: List<Game>) : RecyclerView.Adapter<
                 val intent = Intent( context, CocktailPreview::class.java)
                 intent.putExtra("position", position)
                 intent.putExtra("dataGame", dataGame)
+                intent.putExtra("type", "jeu")
 
                 context.startActivity(intent)
             }

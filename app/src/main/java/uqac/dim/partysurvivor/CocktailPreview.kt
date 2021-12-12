@@ -13,8 +13,8 @@ import java.util.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CocktailPreview() : AppCompatActivity() {
-    private var titles = arrayOf("Cocktail One", "Cocktail Two", "Cocktail Three", "Cocktail Four", "Cocktail Five","Cocktail Six" )
-    private var ingredient_Visible : Boolean = true
+    //private var titles = arrayOf("Cocktail One", "Cocktail Two", "Cocktail Three", "Cocktail Four", "Cocktail Five","Cocktail Six" )
+    //private var ingredient_Visible : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,14 +78,6 @@ class CocktailPreview() : AppCompatActivity() {
                 recette.setText(dataGame.gagner)
             }
         }
-
-
-        /*if(jeu != -1){
-            var image: ImageView = findViewById(R.id.imageView)
-            image.visibility = View.GONE
-            var title: TextView = findViewById(R.id.TitleCocktail)
-            title.setText("Jeu")
-        }*/
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
         navigation.selectedItemId = R.id.ic_3
