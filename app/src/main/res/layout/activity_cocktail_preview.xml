@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CocktailPreview">
-
+    tools:context=".CocktailPreview"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/dices"
+        android:layout_height="400dp"
+        android:src="@drawable/blue_lagoon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="115dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/TitleCocktail"
@@ -35,10 +36,10 @@
         android:layout_width="320dp"
         android:layout_height="1dp"
         android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
@@ -51,136 +52,150 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
-
-        <Button
-            android:id="@+id/ingredient"
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ButtonStyle"
+            android:id="@+id/ButtonIngredient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/raleway"
             android:text="Ingredients"
             android:textAlignment="center"
-            android:textSize="15dp"
-            android:onClick="hideIngredient"/>
+            android:textSize="18dp"/>
 
-        <Button
-            android:id="@+id/recette"
+        <View
+            android:id="@+id/space"
+            android:layout_width="10dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/ButtonStyle"
+            android:id="@+id/ButtonRecette"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/raleway"
             android:text="Recette"
             android:textAlignment="center"
-            android:textSize="15dp"
-            android:onClick="hideRecette"/>
+            android:textSize="18dp" />
     </LinearLayout>
 
-    <TableLayout
-        android:layout_width="300dp"
+    <!--<TableLayout
+        android:id="@+id/TableIngredient"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-        <TableLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/ingredientView"
-                android:scrollbars="vertical"
-                android:layout_width="310dp"
-                android:layout_height="300dp"
-                android:text="" />
+                android:id="@+id/textView5"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:text="Ingrédient 1"
+                android:textColor="@color/black"/>
+        </TableRow>
 
-      *
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/recetteView"
-                android:layout_width="310dp"
-                android:layout_height="300dp"
-                android:text="" />
+                android:id="@+id/textView6"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:text="Ingrédient 2"
+                android:textColor="@color/black"/>
+        </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <!--<TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:text="Ingrédient 3"
+                android:textColor="@color/black"/>
+        </TableRow>
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="Ingrédient 2" />
-            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:text="Ingrédient 4"
+                android:textColor="@color/black"/>
+        </TableRow>
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="Ingrédient 3" />
-            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:text="Ingrédient 5"
+                android:textColor="@color/black"/>
+        </TableRow>
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="Ingrédient 4" />
-            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:text="Ingrédient 6"
+                android:textColor="@color/black"/>
+        </TableRow>
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="Ingrédient 5" />
-            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:text="Ingrédient 7"
+                android:textColor="@color/black"/>
+        </TableRow>
+    </TableLayout>-->
+    <TextView
+        android:id="@+id/ViewIngredient"
+        android:layout_width="300dp"
+        android:layout_height="175dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"/>
 
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="Ingrédient 6" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="Ingrédient 7" />
-            </TableRow>-->
-        </TableLayout>
-    </TableLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:background="#FFBB86FC"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
+    <TextView
+        android:id="@+id/ViewRecette"
+        android:layout_width="300dp"
+        android:layout_height="175dp"
+        android:text="Salut"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
