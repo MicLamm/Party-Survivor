@@ -19,22 +19,14 @@ import kotlin.collections.HashMap
 
 
 class CocktailPreview() : AppCompatActivity() {
-    private var titles = arrayOf("Cocktail One", "Cocktail Two", "Cocktail Three", "Cocktail Four", "Cocktail Five","Cocktail Six" )
 
-    private var details = arrayOf("Detail of cocktail 1", "Detail of cocktail 2", "Detail of cocktail 3", "Detail of cocktail 4", "Detail of cocktail 5", "Detail of cocktail 6")
 
-    private var images = intArrayOf(R.drawable.blue_lagoon, R.drawable.gin_tonic, R.drawable.margarita, R.drawable.rhum_cola, R.drawable.sex_on_the_beach, R.drawable.mojito)
-
-    private var ingredient_Visible : Boolean = true
-
-    var buttonIngredient = findViewById<Button>(R.id.ingredient)
-    var buttonRecette = findViewById<Button>(R.id.recette)
-    var buttonAddFavori: Button = findViewById(R.id.addFavoris)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cocktail_preview)
 
+        var buttonAddFavori: Button? = findViewById(R.id.addFavoris)
 
 
         var viewIngredient = findViewById<TextView>(R.id.ingredientView)
@@ -43,7 +35,6 @@ class CocktailPreview() : AppCompatActivity() {
         viewIngredient.setMovementMethod(ScrollingMovementMethod())
 
         viewRecette.setVisibility(View.INVISIBLE)
-
 
         var listData:List<Coktail>
 
@@ -68,8 +59,10 @@ class CocktailPreview() : AppCompatActivity() {
                 recette.setText(data.recette)
 
 
-                buttonAddFavori.setOnClickListener({
-                    addFavoris(data)
+
+                buttonAddFavori?.setOnClickListener({
+                    isFavoris(data, buttonAddFavori)
+                    //addFavoris(data, buttonAddFavori)
                 })
             }
         }
@@ -107,7 +100,7 @@ class CocktailPreview() : AppCompatActivity() {
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
-                    val a = Intent(this@CocktailPreview, ChoixCategorie::class.java)
+                    val a = Intent(this@CocktailPreview, ChoixFavoris::class.java)
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
@@ -129,6 +122,10 @@ class CocktailPreview() : AppCompatActivity() {
             }
             false
         }
+
+    }
+
+    fun modif_state_button(button: Button, view:View){
 
     }
 
@@ -155,7 +152,7 @@ class CocktailPreview() : AppCompatActivity() {
 
     }
 
-    fun addFavoris(coktail: Coktail){
+    fun addFavoris(coktail: Coktail, buttonAddFavori: Button){
         System.out.println("J OBTIENT CA  : "+coktail)
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser?.uid
@@ -167,9 +164,11 @@ class CocktailPreview() : AppCompatActivity() {
         var favorisMap: HashMap<String, Coktail> = HashMap()
         favorisMap.put(coktail.coktailName, coktail)
         ref.child(currentUser.toString()).updateChildren(favorisMap as Map<String, Any>)
+
+        buttonAddFavori.setText("remove from your favoris ?")
     }
 
-    fun isFavoris(coktail: Coktail){
+    fun isFavoris(coktail: Coktail, buttonAddFavori: Button){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser?.uid
         val database = FirebaseDatabase.getInstance()
@@ -192,10 +191,22 @@ class CocktailPreview() : AppCompatActivity() {
                 }
             }
             val coktail_details: List<Coktail> = coktails;
+            var isFavori: Boolean = false
             for(item in coktails){
-                if(coktail==item){
-                    //buttonAddFavori.setEnable(false)
+                System.out.println("COKTAIL NAME : "+item.coktailName)
+                if(coktail.coktailName.equals(item.coktailName)){
+                    isFavori = true
+                    System.out.println("LE COKTAIL EST UN FAVORIS ? true")
+                    buttonAddFavori.setText("remove from your favoris ?")
+                    //addFavoris(coktail, buttonAddFavori)
                 }
+            }
+            if(isFavori){
+                buttonAddFavori.setText("add to favoris ?")
+                //remove
+            }
+            else{
+                addFavoris(coktail, buttonAddFavori)
             }
         }
 

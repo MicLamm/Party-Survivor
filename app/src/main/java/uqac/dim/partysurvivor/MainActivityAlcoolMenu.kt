@@ -94,7 +94,7 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
-                    val a = Intent(this@MainActivityAlcoolMenu, ChoixCategorie::class.java)
+                    val a = Intent(this@MainActivityAlcoolMenu, ChoixFavoris::class.java)
                     startActivity(a)
                 }
                 R.id.ic_2 -> {

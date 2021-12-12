@@ -55,8 +55,8 @@ class FeaturedDrink : AppCompatActivity() {
             navigation.selectedItemId = R.id.ic_3
             navigation.setOnItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.ic_3 -> {
-                        val a = Intent(this@FeaturedDrink, ChoixCategorie::class.java)
+                    R.id.ic_1 -> {
+                        val a = Intent(this@FeaturedDrink, ChoixFavoris::class.java)
                         startActivity(a)
                     }
                     R.id.ic_2 -> {

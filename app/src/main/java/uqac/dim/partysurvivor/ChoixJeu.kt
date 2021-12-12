@@ -67,7 +67,7 @@ class ChoixJeu : AppCompatActivity() {
             navigation.setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.ic_1 -> {
-                        val a = Intent(this@ChoixJeu, ChoixCategorie::class.java)
+                        val a = Intent(this@ChoixJeu, ChoixFavoris::class.java)
                         startActivity(a)
                     }
                     R.id.ic_2 -> {

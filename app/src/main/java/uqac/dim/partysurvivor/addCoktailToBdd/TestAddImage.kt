@@ -198,7 +198,7 @@ class TestAddImage : AppCompatActivity() {
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
-                    val a = Intent(this@TestAddImage, ChoixCategorie::class.java)
+                    val a = Intent(this@TestAddImage, ChoixFavoris::class.java)
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
