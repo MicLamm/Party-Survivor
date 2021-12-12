@@ -62,7 +62,7 @@ class ActivityListAlcool : AppCompatActivity(){
             navigation.setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.ic_1 -> {
-                        val a = Intent(this@ActivityListAlcool, ChoixCategorie::class.java)
+                        val a = Intent(this@ActivityListAlcool, ChoixFavoris::class.java)
                         startActivity(a)
                     }
                     R.id.ic_2 -> {

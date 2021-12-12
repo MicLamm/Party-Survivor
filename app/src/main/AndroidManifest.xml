@@ -39,9 +39,6 @@
             android:name=".CreationItem"
             android:exported="false" />
         <activity
-            android:name=".ChoixCategorie"
-            android:exported="false" />
-        <activity
             android:name=".CocktailPreview"
             android:exported="true" />
         <activity
