@@ -51,7 +51,7 @@ class Authentification : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val intent1: Intent = Intent(this, MainActivity::class.java)
+        val intent1: Intent = Intent(this, FeaturedDrink::class.java)
         this.handleResponseAfterSignIn(requestCode, resultCode, data, intent1)
     }
 
