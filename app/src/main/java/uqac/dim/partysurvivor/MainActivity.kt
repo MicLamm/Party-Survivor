@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@MainActivity, ChoixTypeJeu::class.java)
+                    val a = Intent(this@MainActivity, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         intent = Intent(this, MainActivity::class.java)
         when(view){
             Featured -> intent = Intent(this, FeaturedDrink::class.java)
-            Game -> intent = Intent(this, ChoixTypeJeu::class.java)
+            Game -> intent = Intent(this, ChoixJeu::class.java)
             Drink -> intent = Intent(this, MainActivityAlcoolMenu::class.java)
             AddCoktail -> intent = Intent(this, TestAddImage::class.java)
         }

@@ -112,18 +112,19 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView
         var itemTitle: TextView
+        var itemDetail: TextView
 
 
         init {
             dataSet = listData as ArrayList<Coktail>
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
-
+            itemDetail = itemView.findViewById(R.id.item_detail)
             //var bundle : Bundle = Bundle()
             //bundle.putParcelableArrayList("listData", listData)
 
 
-            itemView.setOnClickListener {
+            itemDetail.setOnClickListener {
                 for (coktail in listData) {
                     if (coktail.coktailName.equals(itemTitle.text)) {
                         data = coktail

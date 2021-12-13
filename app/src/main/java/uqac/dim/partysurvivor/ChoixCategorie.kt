@@ -25,7 +25,7 @@ class ChoixCategorie : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@ChoixCategorie, ChoixTypeJeu::class.java)
+                    val a = Intent(this@ChoixCategorie, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {

@@ -64,7 +64,7 @@ class ChoixFavoris : AppCompatActivity() {
                     false
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@ChoixFavoris, ChoixTypeJeu::class.java)
+                    val a = Intent(this@ChoixFavoris, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {

@@ -64,7 +64,7 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@MainActivityAlcoolMenu, ChoixTypeJeu::class.java)
+                    val a = Intent(this@MainActivityAlcoolMenu, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {

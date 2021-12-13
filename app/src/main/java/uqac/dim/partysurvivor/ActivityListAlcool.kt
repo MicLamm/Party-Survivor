@@ -44,7 +44,17 @@ class ActivityListAlcool : AppCompatActivity(){
                     val alcool1 = Alcool(type, snapshot.key!!, alcoolImage!!.imageUrl)
                     alcools.add(alcool1)
                 }
-                System.out.println("RESULTAT DE LA LISTE D ALCOOL : "+alcools)
+                val image_details: List<Alcool> = alcools;
+                val alcoolMenu_details: List<AlcoolMenu> = Arrays.asList()
+                val gridView = findViewById<View>(R.id.gridView) as GridView
+                gridView.adapter = CustomGridAdapterMenuAlcool(this, image_details, alcoolMenu_details, "alcool")
+
+                //quand l'user click sur un gridItem
+                gridView.onItemClickListener =
+                    AdapterView.OnItemClickListener { a, v, position, id ->
+                        val o = gridView.getItemAtPosition(position)
+                        val alcool: Alcool = o as Alcool
+                    }
             }
 
             val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
@@ -52,11 +62,11 @@ class ActivityListAlcool : AppCompatActivity(){
             navigation.setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.ic_1 -> {
-                        val a = Intent(this@ActivityListAlcool, ChoixCategorie::class.java)
+                        val a = Intent(this@ActivityListAlcool, ChoixFavoris::class.java)
                         startActivity(a)
                     }
                     R.id.ic_2 -> {
-                        val a = Intent(this@ActivityListAlcool, ChoixTypeJeu::class.java)
+                        val a = Intent(this@ActivityListAlcool, ChoixJeu::class.java)
                         startActivity(a)
                     }
                     R.id.ic_3 -> {
@@ -68,7 +78,7 @@ class ActivityListAlcool : AppCompatActivity(){
                         startActivity(b)
                     }
                     R.id.ic_5 -> {
-                        val b = Intent(this@ActivityListAlcool, ChoixCategorie::class.java)
+                        val b = Intent(this@ActivityListAlcool, TestAddImage::class.java)
                         startActivity(b)
                     }
                 }

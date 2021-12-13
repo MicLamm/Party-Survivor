@@ -80,7 +80,7 @@ class CocktailPreview() : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@CocktailPreview, ChoixTypeJeu::class.java)
+                    val a = Intent(this@CocktailPreview, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {

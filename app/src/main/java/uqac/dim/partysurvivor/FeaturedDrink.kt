@@ -60,7 +60,7 @@ class FeaturedDrink : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@FeaturedDrink, ChoixTypeJeu::class.java)
+                    val a = Intent(this@FeaturedDrink, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {

@@ -29,13 +29,10 @@ class ChoixJeu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choix_jeu)
 
-        val Type: String = intent.getStringExtra("Type") as String
-
-
         //recycler view avec bdd
         val database = FirebaseDatabase.getInstance()
-        val refAlcool = database.getReference("game/" + Type)
-        refAlcool.get().addOnCompleteListener { task ->
+        val refGame = database.getReference("game")
+        refGame.get().addOnCompleteListener { task ->
             var games: ArrayList<Game> = ArrayList()
             if (!task.isSuccessful) {
 
@@ -74,7 +71,7 @@ class ChoixJeu : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@ChoixJeu, ChoixTypeJeu::class.java)
+                    val a = Intent(this@ChoixJeu, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {
