@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@MainActivity, ChoixTypeJeu::class.java)
+                    val a = Intent(this@MainActivity, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {

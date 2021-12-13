@@ -11,7 +11,6 @@ import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class MainActivityAlcoolMenu: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
@@ -56,39 +55,6 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
                 }
         }
 
-
-
-       /* var buttonScotchAndWhisky = findViewById<Button>(R.id.scotchAndWhisky)
-        var buttonLiqueurAndCream = findViewById<Button>(R.id.liqueurAndCream)
-        var buttonGin = findViewById<Button>(R.id.gin)
-        var buttonRum = findViewById<Button>(R.id.rum)
-
-
-        val monIntent1: Intent = Intent(this, ActivityListAlcool::class.java)
-
-
-        buttonScotchAndWhisky.setOnClickListener{
-            monIntent1.putExtra("idButton", "scotchAndWhisky")
-            startActivity(monIntent1)
-            //finish()
-
-        }
-
-        buttonLiqueurAndCream.setOnClickListener{
-            monIntent1.putExtra("idButton", "liqueurAndCream")
-            startActivity(monIntent1)
-        }
-
-        buttonGin.setOnClickListener{
-            monIntent1.putExtra("idButton", "gin")
-            startActivity(monIntent1)
-        }
-
-        buttonRum.setOnClickListener{
-            monIntent1.putExtra("idButton", "rum")
-            startActivity(monIntent1)
-        }*/
-
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
         navigation.selectedItemId = R.id.ic_4
         navigation.setOnItemSelectedListener { item ->
@@ -98,7 +64,7 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@MainActivityAlcoolMenu, ChoixTypeJeu::class.java)
+                    val a = Intent(this@MainActivityAlcoolMenu, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {
@@ -106,6 +72,7 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_4 -> {
+                    false
                 }
                 R.id.ic_5 -> {
                     val b = Intent(this@MainActivityAlcoolMenu, TestAddImage::class.java)
@@ -114,6 +81,5 @@ class MainActivityAlcoolMenu: AppCompatActivity() {
             }
             false
         }
-
     }
 }

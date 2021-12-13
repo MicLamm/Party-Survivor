@@ -8,51 +8,27 @@
     tools:context=".CocktailPreview"
     android:background="@color/white">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addFavoris"
-        android:text="Add in your favoris ?"
-        android:drawableTop="@drawable/add_favoris"
-        android:backgroundTint="@color/white"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="400dp"
-        android:src="@drawable/blue_lagoon"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
     <TextView
-        android:id="@+id/TitleCocktail"
+        android:id="@+id/TitleGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/raleway"
-        android:text="Cocktail Name"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        android:text="Game Name"
+        android:textSize="36dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view"
         android:layout_width="320dp"
         android:layout_height="1dp"
         android:background="@android:color/black"
-        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/TitleGame"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
@@ -65,14 +41,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
+
         <androidx.appcompat.widget.AppCompatButton
             style="@style/ButtonStyle"
-            android:id="@+id/ButtonIngredient"
+            android:id="@+id/ButtonRègle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/raleway"
-            android:text="Ingredients"
+            android:text="Règles"
             android:textAlignment="center"
             android:textSize="18dp"/>
 
@@ -84,19 +61,20 @@
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/ButtonStyle"
-            android:id="@+id/ButtonRecette"
+            android:id="@+id/ButtonNothing"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/raleway"
-            android:text="Recette"
+            android:text="Aucune Idée"
             android:textAlignment="center"
             android:textSize="18dp" />
     </LinearLayout>
+
     <TextView
-        android:id="@+id/ViewIngredient"
-        android:layout_width="300dp"
-        android:layout_height="175dp"
+        android:id="@+id/ViewRegle"
+        android:layout_width="350dp"
+        android:layout_height="550dp"
         android:textColor="@color/black"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"/>
 
     <TextView
-        android:id="@+id/ViewRecette"
+        android:id="@+id/ViewNothing"
         android:layout_width="300dp"
         android:layout_height="175dp"
         android:text="Salut"

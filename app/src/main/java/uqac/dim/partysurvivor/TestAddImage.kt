@@ -1,4 +1,4 @@
-package uqac.dim.partysurvivor.addCoktailToBdd
+package uqac.dim.partysurvivor
 
 import android.Manifest
 import android.app.AlertDialog
@@ -194,7 +194,7 @@ class TestAddImage : AppCompatActivity() {
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-        navigation.selectedItemId = R.id.ic_3
+        navigation.selectedItemId = R.id.ic_5
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
@@ -202,7 +202,7 @@ class TestAddImage : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@TestAddImage, ChoixTypeJeu::class.java)
+                    val a = Intent(this@TestAddImage, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {

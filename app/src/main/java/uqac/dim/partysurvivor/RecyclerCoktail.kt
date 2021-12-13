@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,13 +18,6 @@ import com.google.firebase.database.FirebaseDatabase
 import java.io.Serializable
 
 class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<RecyclerCoktail.ViewHolder>(), Filterable {
-
-    //private var titles = arrayOf("Cocktail One", "Cocktail Two", "Cocktail Three", "Cocktail Four", "Cocktail Five","Cocktail Six" )
-
-    //private var details = arrayOf("Detail of cocktail 1", "Detail of cocktail 2", "Detail of cocktail 3", "Detail of cocktail 4", "Detail of cocktail 5", "Detail of cocktail 6")
-
-    //private var images = intArrayOf(R.drawable.blue_lagoon, R.drawable.gin_tonic, R.drawable.margarita, R.drawable.rhum_cola, R.drawable.sex_on_the_beach, R.drawable.mojito)
-
     lateinit var context: Context
 
     var data = Coktail()
@@ -35,14 +32,11 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         holder.itemTitle.text = listData[position].coktailName
         holder.itemDetail.text = listData[position].detailsCoktail
         Glide.with(context).load(listData[position].imageUrl).into(holder.itemImage)
         data = listData[position]
-
-
-    //holder.itemImage.setImageResource(images[position])
+        //holder.itemImage.setImageResource(images[position])
     }
 
     override fun getItemCount(): Int {
@@ -80,14 +74,14 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
             notifyDataSetChanged()
         }
 
-        fun isFavoris(coktail: Coktail, buttonAddFavori: Button){
+        fun isFavoris(coktail: Coktail, buttonAddFavori: Button) {
             val auth: FirebaseAuth = FirebaseAuth.getInstance()
             val currentUser = auth.currentUser?.uid
             val database = FirebaseDatabase.getInstance()
-            val ref = database.getReference("favoris/"+currentUser.toString())
+            val ref = database.getReference("favoris/" + currentUser.toString())
 
             ref.get().addOnCompleteListener { task ->
-                var coktails : java.util.ArrayList<Coktail> = java.util.ArrayList()
+                var coktails: java.util.ArrayList<Coktail> = java.util.ArrayList()
                 if (!task.isSuccessful) {
 
                     println("firebase" + "Error getting data" + task.exception)
@@ -103,19 +97,20 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
                     }
                 }
                 val coktail_details: List<Coktail> = coktails;
-                for(item in coktails){
-                    System.out.println("COKTAIL NAME : "+item.coktailName)
-                    if(coktail.coktailName.equals(item.coktailName)){
+                for (item in coktails) {
+                    System.out.println("COKTAIL NAME : " + item.coktailName)
+                    if (coktail.coktailName.equals(item.coktailName)) {
                         System.out.println("LE COKTAIL EST UN FAVORIS ? true")
                         buttonAddFavori.setText("remove from your favoris ?")
                     }
                 }
             }
-
         }
+
+
     }
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView
         var itemTitle: TextView
         var itemDetail: TextView
@@ -126,12 +121,8 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
-
-
-
             //var bundle : Bundle = Bundle()
             //bundle.putParcelableArrayList("listData", listData)
-
 
 
             itemView.setOnClickListener {
@@ -143,14 +134,9 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
                 val intent = Intent(context, CocktailPreview::class.java)
                 intent.putExtra("position", position)
                 intent.putExtra("data", data)
-                intent.putExtra("type", "coktail")
 
                 context.startActivity(intent)
 
-
-                //val position: Int =adapterPosition
-
-                //Toast.makeText(itemView.context, "you clicked on ${titles[position]}", Toast.LENGTH_LONG).show()
             }
 
         }

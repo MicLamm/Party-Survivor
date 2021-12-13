@@ -19,80 +19,45 @@ import kotlin.collections.HashMap
 
 
 class CocktailPreview() : AppCompatActivity() {
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cocktail_preview)
-
+        var buttonIngredient = findViewById<Button>(R.id.ButtonIngredient)
+        var buttonRecette = findViewById<Button>(R.id.ButtonRecette)
         var buttonAddFavori: Button? = findViewById(R.id.addFavoris)
 
 
-        var viewIngredient = findViewById<TextView>(R.id.ingredientView)
-        var viewRecette = findViewById<TextView>(R.id.recetteView)
+        var viewIngredient = findViewById<TextView>(R.id.ViewIngredient)
+        var viewRecette = findViewById<TextView>(R.id.ViewRecette)
 
+        //à retirer quand deplacement dans GamePreview
         viewIngredient.setMovementMethod(ScrollingMovementMethod())
-
         viewRecette.setVisibility(View.INVISIBLE)
 
         var listData:List<Coktail>
-
-
+        buttonRecette.setOnClickListener {
+            viewIngredient.visibility = View.GONE;
+            viewRecette.visibility = View.VISIBLE;
+        }
         val position: Int = intent.getIntExtra("position", -1)
-        val jeu: Int = intent.getIntExtra("Jeu", -1)
-        val type: String = intent.getStringExtra("type") as String
+        val data:Coktail = intent.getSerializableExtra("data") as Coktail
 
-        if(type.equals("coktail")){
-            val data:Coktail = intent.getSerializableExtra("data") as Coktail
-
-            if(position != -1){
-                var image: ImageView = findViewById(R.id.imageView)
-                Glide.with(this).load(data.imageUrl).into(image)
-                //image.setImageResource(images[position])
-                var title: TextView = findViewById(R.id.TitleCocktail)
-                title.setText(data.coktailName)
-
-                var ingredient: TextView = findViewById(R.id.ingredientView)
-                ingredient.setText(data.ingredient)
-                var recette: TextView = findViewById(R.id.recetteView)
-                recette.setText(data.recette)
-
-
-
-                buttonAddFavori?.setOnClickListener({
-                    isFavoris(data, buttonAddFavori)
-                    //addFavoris(data, buttonAddFavori)
-                })
-            }
-        }
-        else{
-            val dataGame:Game = intent.getSerializableExtra("dataGame") as Game
-
-            if(position != -1){
-                var image: ImageView = findViewById(R.id.imageView)
-                Glide.with(this).load(dataGame.imageUrl).into(image)
-                //image.setImageResource(images[position])
-                var title: TextView = findViewById(R.id.TitleCocktail)
-                title.setText(dataGame.gameName)
-
-                var buttonIngredient: Button = findViewById(R.id.ingredient)
-                buttonIngredient.setText("regles")
-                var buttonRecette: Button = findViewById(R.id.recette)
-                buttonRecette.setText("gagner ?")
-
-                var ingredient: TextView = findViewById(R.id.ingredientView)
-                ingredient.setText(dataGame.regle)
-                var recette: TextView = findViewById(R.id.recetteView)
-                recette.setText(dataGame.gagner)
-            }
-        }
-
-        if(jeu != -1){
+        if(position != -1){
             var image: ImageView = findViewById(R.id.imageView)
-            image.visibility = View.GONE
+            Glide.with(this).load(data.imageUrl).into(image)
+
             var title: TextView = findViewById(R.id.TitleCocktail)
-            title.setText("Jeu")
+            title.setText(data.coktailName)
+
+            var ingredient: TextView = findViewById(R.id.ViewIngredient)
+            ingredient.setText(data.ingredient)
+            var recette: TextView = findViewById(R.id.ViewRecette)
+            recette.setText(data.recette)
+
+            buttonAddFavori?.setOnClickListener({
+                isFavoris(data, buttonAddFavori)
+                //addFavoris(data, buttonAddFavori)
+            })
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
@@ -104,7 +69,7 @@ class CocktailPreview() : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@CocktailPreview, ChoixTypeJeu::class.java)
+                    val a = Intent(this@CocktailPreview, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {
@@ -116,13 +81,12 @@ class CocktailPreview() : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@CocktailPreview, ChoixCategorie::class.java)
+                    val b = Intent(this@CocktailPreview, TestAddImage::class.java)
                     startActivity(b)
                 }
             }
             false
         }
-
     }
 
     fun modif_state_button(button: Button, view:View){
@@ -132,8 +96,8 @@ class CocktailPreview() : AppCompatActivity() {
     //gérer la vue recette/ingredient
     fun hideRecette(view:View){
 
-        var ingredient: TextView = findViewById(R.id.ingredientView)
-        var recette: TextView = findViewById(R.id.recetteView)
+        var ingredient: TextView = findViewById(R.id.ViewIngredient)
+        var recette: TextView = findViewById(R.id.ViewRecette)
 
         if(ingredient.getVisibility() == View.VISIBLE){
             ingredient.setVisibility(View.GONE)
@@ -142,14 +106,13 @@ class CocktailPreview() : AppCompatActivity() {
     }
 
     fun hideIngredient(view:View){
-        var ingredient: TextView = findViewById(R.id.ingredientView)
-        var recette: TextView = findViewById(R.id.recetteView)
+        var ingredient: TextView = findViewById(R.id.ViewIngredient)
+        var recette: TextView = findViewById(R.id.ViewRecette)
 
         if(recette.getVisibility() == View.VISIBLE){
             recette.setVisibility(View.GONE)
             ingredient.setVisibility(View.VISIBLE)
         }
-
     }
 
     fun addFavoris(coktail: Coktail, buttonAddFavori: Button){
@@ -166,6 +129,14 @@ class CocktailPreview() : AppCompatActivity() {
         ref.child(currentUser.toString()).updateChildren(favorisMap as Map<String, Any>)
 
         buttonAddFavori.setText("remove from your favoris ?")
+    }
+    fun removeFavoris(coktail: Coktail){
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser?.uid
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("favoris/"+currentUser.toString())
+
+        ref.child(coktail.coktailName).removeValue()
     }
 
     fun isFavoris(coktail: Coktail, buttonAddFavori: Button){
@@ -203,7 +174,7 @@ class CocktailPreview() : AppCompatActivity() {
             }
             if(isFavori){
                 buttonAddFavori.setText("add to favoris ?")
-                //remove
+                removeFavoris(coktail)
             }
             else{
                 addFavoris(coktail, buttonAddFavori)

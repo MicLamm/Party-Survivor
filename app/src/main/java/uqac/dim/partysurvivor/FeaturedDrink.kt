@@ -13,7 +13,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class FeaturedDrink : AppCompatActivity() {
     private var layoutManager : RecyclerView.LayoutManager? = null
@@ -50,32 +49,33 @@ class FeaturedDrink : AppCompatActivity() {
             recyclerView.layoutManager = layoutManager
             adapter = RecyclerCoktail(coktail_details)
             recyclerView.adapter = adapter
+        }
 
-            val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-            navigation.selectedItemId = R.id.ic_3
-            navigation.setOnItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.ic_1 -> {
-                        val a = Intent(this@FeaturedDrink, ChoixFavoris::class.java)
-                        startActivity(a)
-                    }
-                    R.id.ic_2 -> {
-                        val a = Intent(this@FeaturedDrink, ChoixTypeJeu::class.java)
-                        startActivity(a)
-                    }
-                    R.id.ic_3 -> {
-                    }
-                    R.id.ic_4 -> {
-                        val b = Intent(this@FeaturedDrink, MainActivityAlcoolMenu::class.java)
-                        startActivity(b)
-                    }
-                    R.id.ic_5 -> {
-                        val b = Intent(this@FeaturedDrink, TestAddImage::class.java)
-                        startActivity(b)
-                    }
+        val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
+        navigation.selectedItemId = R.id.ic_3
+        navigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ic_1 -> {
+                    val a = Intent(this@FeaturedDrink, ChoixFavoris::class.java)
+                    startActivity(a)
                 }
-                false
+                R.id.ic_2 -> {
+                    val a = Intent(this@FeaturedDrink, ChoixJeu::class.java)
+                    startActivity(a)
+                }
+                R.id.ic_3 -> {
+                    false
+                }
+                R.id.ic_4 -> {
+                    val b = Intent(this@FeaturedDrink, MainActivityAlcoolMenu::class.java)
+                    startActivity(b)
+                }
+                R.id.ic_5 -> {
+                    val b = Intent(this@FeaturedDrink, TestAddImage::class.java)
+                    startActivity(b)
+                }
             }
+            false
         }
 
     }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class ChoixTypeJeu : AppCompatActivity() {
     lateinit var dice: View
@@ -25,6 +24,7 @@ class ChoixTypeJeu : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
+                    false
                 }
                 R.id.ic_3 -> {
                     val b = Intent(this@ChoixTypeJeu, FeaturedDrink::class.java)

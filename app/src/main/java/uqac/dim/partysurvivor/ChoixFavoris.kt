@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import uqac.dim.partysurvivor.addCoktailToBdd.TestAddImage
 
 class ChoixFavoris : AppCompatActivity() {
     private var layoutManager : RecyclerView.LayoutManager? = null
@@ -57,19 +56,15 @@ class ChoixFavoris : AppCompatActivity() {
         }
 
 
-
-
-
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
         navigation.selectedItemId = R.id.ic_1
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.ic_1 -> {
-                    val a = Intent(this@ChoixFavoris, ChoixFavoris::class.java)
-                    startActivity(a)
+                    false
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@ChoixFavoris, ChoixTypeJeu::class.java)
+                    val a = Intent(this@ChoixFavoris, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {
@@ -88,4 +83,6 @@ class ChoixFavoris : AppCompatActivity() {
             false
         }
     }
+
+
 }
