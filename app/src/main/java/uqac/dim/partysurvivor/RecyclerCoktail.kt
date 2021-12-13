@@ -33,7 +33,6 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemTitle.text = listData[position].coktailName
-        holder.itemDetail.text = listData[position].detailsCoktail
         Glide.with(context).load(listData[position].imageUrl).into(holder.itemImage)
         data = listData[position]
         //holder.itemImage.setImageResource(images[position])
@@ -113,14 +112,13 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView
         var itemTitle: TextView
-        var itemDetail: TextView
 
 
         init {
             dataSet = listData as ArrayList<Coktail>
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
-            itemDetail = itemView.findViewById(R.id.item_detail)
+
             //var bundle : Bundle = Bundle()
             //bundle.putParcelableArrayList("listData", listData)
 
