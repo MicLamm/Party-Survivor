@@ -206,8 +206,6 @@ class TestAddImage : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@TestAddImage, TestAddImage::class.java)
-                    startActivity(b)
                 }
             }
             false
