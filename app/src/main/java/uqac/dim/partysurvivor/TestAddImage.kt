@@ -87,6 +87,8 @@ class TestAddImage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_add_image)
 
+        supportActionBar?.setTitle(R.string.AddDrink)
+
 
 
         val actionBar: ActionBar?

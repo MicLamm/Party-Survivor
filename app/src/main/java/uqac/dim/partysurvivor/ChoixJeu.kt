@@ -28,14 +28,11 @@ class ChoixJeu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choix_jeu)
-
-        //val Type: String = intent.getStringExtra("Type") as String
-
-
+        supportActionBar?.setTitle(R.string.ListGame)
         //recycler view avec bdd
         val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("game")
-        ref.get().addOnCompleteListener { task ->
+        val refGame = database.getReference("game")
+        refGame.get().addOnCompleteListener { task ->
             var games: ArrayList<Game> = ArrayList()
             if (!task.isSuccessful) {
 

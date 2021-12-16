@@ -17,34 +17,19 @@ class GamePreview  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_preview)
 
-        val buttonRegle = findViewById<Button>(R.id.ButtonRègle)
-        val buttonNothing = findViewById<Button>(R.id.ButtonNothing)
-
         val viewRegle = findViewById<TextView>(R.id.ViewRegle)
-        val viewNothing = findViewById<TextView>(R.id.ViewNothing)
 
         //à retirer quand deplacement dans GamePreview
-        viewRegle.setMovementMethod(ScrollingMovementMethod())
+        //viewRegle.setMovementMethod(ScrollingMovementMethod())
 
-        buttonNothing.setOnClickListener {
-            viewRegle.visibility = View.GONE;
-            viewNothing.visibility = View.VISIBLE;
-        }
-        buttonRegle.setOnClickListener {
-            viewNothing.visibility = View.GONE;
-            viewRegle.visibility = View.VISIBLE;
-        }
 
         val position: Int = intent.getIntExtra("position", -1)
         val dataGame:Game = intent.getSerializableExtra("dataGame") as Game
 
         if(position != -1){
-            //var image: ImageView = findViewById(R.id.imageView)
-            //Glide.with(this).load(dataGame.imageUrl).into(image)
             var title: TextView = findViewById(R.id.TitleGame)
             title.setText(dataGame.gameName)
             viewRegle.setText(dataGame.regle)
-            viewNothing.setText(dataGame.gagner)
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView

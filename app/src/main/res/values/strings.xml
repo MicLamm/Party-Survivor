@@ -8,6 +8,9 @@
     <string name="RemoveFavoriButton">Remove from favorite</string>
     <string name="Yes">YES</string>
     <string name="No">NO</string>
+    <string name="ListGame">List of games</string>
+    <string name="ListFavori">List of favourites</string>
+    <string name="AddDrink">Add drink</string>
     <string name="Access">Allow the application to access gallery ?</string>
 
     <string name="ic_1">Favoris</string>
