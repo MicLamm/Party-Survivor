@@ -8,7 +8,7 @@
     tools:context=".CocktailPreview"
     android:background="@color/white">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/addFavoris"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
@@ -37,9 +37,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="center"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
         android:src="@drawable/blue_lagoon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

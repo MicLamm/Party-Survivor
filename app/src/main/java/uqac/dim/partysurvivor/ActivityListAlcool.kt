@@ -53,12 +53,11 @@ class ActivityListAlcool : AppCompatActivity(){
                 gridView.onItemClickListener =
                     AdapterView.OnItemClickListener { a, v, position, id ->
                         val o = gridView.getItemAtPosition(position)
-                        val alcool: Alcool = o as Alcool
                     }
             }
 
             val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
-            navigation.selectedItemId = R.id.ic_4
+            navigation.selectedItemId = R.id.ic_3
             navigation.setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.ic_1 -> {
@@ -66,7 +65,7 @@ class ActivityListAlcool : AppCompatActivity(){
                         startActivity(a)
                     }
                     R.id.ic_2 -> {
-                        val a = Intent(this@ActivityListAlcool, ChoixTypeJeu::class.java)
+                        val a = Intent(this@ActivityListAlcool, ChoixJeu::class.java)
                         startActivity(a)
                     }
                     R.id.ic_3 -> {

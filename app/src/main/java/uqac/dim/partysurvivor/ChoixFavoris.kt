@@ -22,8 +22,6 @@ class ChoixFavoris : AppCompatActivity() {
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser?.uid
 
-        System.out.println("JE SUIS DANS CHOIW FAVORIS")
-
         val database = FirebaseDatabase.getInstance()
         val refAlcool = database.getReference("favoris/"+currentUser.toString())
         refAlcool.get().addOnCompleteListener { task ->
@@ -64,6 +62,8 @@ class ChoixFavoris : AppCompatActivity() {
                     false
                 }
                 R.id.ic_2 -> {
+                    val a = Intent(this@ChoixFavoris, ChoixJeu::class.java)
+                    startActivity(a)
                 }
                 R.id.ic_3 -> {
                     val b = Intent(this@ChoixFavoris, FeaturedDrink::class.java)

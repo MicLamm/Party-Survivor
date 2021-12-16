@@ -100,7 +100,7 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
                     System.out.println("COKTAIL NAME : " + item.coktailName)
                     if (coktail.coktailName.equals(item.coktailName)) {
                         System.out.println("LE COKTAIL EST UN FAVORIS ? true")
-                        buttonAddFavori.setText("remove from your favoris ?")
+                        buttonAddFavori.setText(R.string.RemoveFavoriButton)
                     }
                 }
             }
@@ -118,7 +118,6 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
             dataSet = listData as ArrayList<Coktail>
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
-
             //var bundle : Bundle = Bundle()
             //bundle.putParcelableArrayList("listData", listData)
 

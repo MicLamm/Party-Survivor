@@ -194,7 +194,7 @@ class TestAddImage : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_2 -> {
-                    val a = Intent(this@TestAddImage, ChoixTypeJeu::class.java)
+                    val a = Intent(this@TestAddImage, ChoixJeu::class.java)
                     startActivity(a)
                 }
                 R.id.ic_3 -> {
@@ -330,9 +330,9 @@ class TestAddImage : AppCompatActivity() {
 
 
         var dialog: AlertDialog.Builder = AlertDialog.Builder(this)
-        dialog.setTitle("Allow the application to access gallery ? ")
+        dialog.setTitle(R.string.Access)
 
-        dialog.setPositiveButton("YES",
+        dialog.setPositiveButton(R.string.Yes,
             DialogInterface.OnClickListener { dialog, which -> // Write your code here to execute after dialog
                 // Defining Implicit Intent to mobile gallery
                 val intent = Intent()
@@ -342,8 +342,8 @@ class TestAddImage : AppCompatActivity() {
 
             })
 
-        dialog.setNegativeButton("NO", DialogInterface.OnClickListener { dialog, which ->
-            var intent: Intent = Intent(this, MainActivity::class.java)
+        dialog.setNegativeButton(R.string.No, DialogInterface.OnClickListener { dialog, which ->
+            var intent: Intent = Intent(this, FeaturedDrink::class.java)
             startActivity(intent)
             Toast.makeText(getApplicationContext(),
                 "You cant add a new coktail if you don t take a picture", Toast.LENGTH_SHORT)
@@ -413,11 +413,6 @@ class TestAddImage : AppCompatActivity() {
             if (ref != null) {
                 ref.putFile(filePath!!)
                     .addOnSuccessListener {
-                        //System.out.println("resultat DANS ONSUCCESS LA : "+imageUri)
-                        //var snapshot = taskSnaphot.result
-                        //var download: UploadTask.TaskSnapshot? = snapshot
-                        // Image uploaded successfully
-                        // Dismiss dialog
                         progressDialog.dismiss()
                         Toast
                             .makeText(
