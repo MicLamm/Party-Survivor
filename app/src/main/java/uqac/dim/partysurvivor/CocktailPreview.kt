@@ -30,9 +30,6 @@ class CocktailPreview() : AppCompatActivity() {
         var viewIngredient = findViewById<ScrollView>(R.id.ViewIngredient)
         var viewRecette = findViewById<ScrollView>(R.id.ViewRecette)
 
-        //à retirer quand deplacement dans GamePreview
-        viewRecette.setVisibility(View.INVISIBLE)
-
         var listData:List<Coktail>
         buttonRecette.setOnClickListener {
             viewIngredient.visibility = View.GONE;
@@ -49,8 +46,7 @@ class CocktailPreview() : AppCompatActivity() {
             var image: ImageView = findViewById(R.id.imageView)
             Glide.with(this).load(data.imageUrl).into(image)
 
-            var title: TextView = findViewById(R.id.TitleCocktail)
-            title.text = data.coktailName
+            (findViewById<TextView>(R.id.TitleCocktail)).text = data.coktailName
 
             var ingredient: TextView = viewIngredient.getChildAt(0) as TextView
             ingredient.text = data.ingredient
@@ -147,12 +143,12 @@ class CocktailPreview() : AppCompatActivity() {
                     isFavori=true
             }
             if(isFavori){
-                buttonRemoveFavoris.setVisibility(View.VISIBLE)
-                buttonAddFavori.setVisibility(View.GONE)
+                buttonRemoveFavoris.visibility = View.VISIBLE
+                buttonAddFavori.visibility = View.GONE
             }
             else{
-                buttonRemoveFavoris.setVisibility(View.GONE)
-                buttonAddFavori.setVisibility(View.VISIBLE)
+                buttonRemoveFavoris.visibility = View.GONE
+                buttonAddFavori.visibility = View.VISIBLE
             }
         }
 
