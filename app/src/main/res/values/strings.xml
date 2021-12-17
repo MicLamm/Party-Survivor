@@ -4,33 +4,21 @@
     <string name="DrinkButton">Drink Recipes</string>
     <string name="CardButton">Card Games</string>
     <string name="DiceButton">Dice Games</string>
-    <string name="OtherGames">You might be able to play :</string>
+    <string name="AddFavoriButton">Add to favorite</string>
+    <string name="RemoveFavoriButton">Remove from favorite</string>
+    <string name="Yes">YES</string>
+    <string name="No">NO</string>
+    <string name="ListGame">List of games</string>
+    <string name="ListFavori">List of favourites</string>
+    <string name="AddDrink">Add drink</string>
+    <string name="Access">Allow the application to access gallery ?</string>
+    <string name="Start">Start the Party !</string>
 
     <string name="ic_1">Favoris</string>
     <string name="ic_2">Games</string>
     <string name="ic_3">Cocktails</string>
     <string name="ic_4">HelpShake</string>
     <string name="ic_5">addCoktail</string>
-
-    <string-array name="cocktail_List">
-        <item>Blue Lagoon</item>
-        <item>Gin Tonic</item>
-        <item>Margarita</item>
-        <item>Mojito</item>
-        <item>Rhum Cola</item>
-        <item>Sex On the Beach</item>
-        <item>White Russian</item>
-    </string-array>
-
-    <string-array name="description">
-        <item>This is random description</item>
-        <item>This is random description</item>
-        <item>This is random description</item>
-        <item>This is random description</item>
-        <item>This is random description</item>
-        <item>This is random description</item>
-        <item>This is random description</item>
-    </string-array>
 
 
 </resources>

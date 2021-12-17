@@ -18,6 +18,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.ActionBar
 import androidx.core.app.ActivityCompat
@@ -35,8 +36,10 @@ import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
 import kotlin.collections.HashMap
 import android.widget.Toast
+import androidx.core.view.children
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import uqac.dim.partysurvivor.*
+import kotlin.reflect.typeOf
 
 
 class TestAddImage : AppCompatActivity() {
@@ -84,6 +87,8 @@ class TestAddImage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_add_image)
 
+        supportActionBar?.setTitle(R.string.AddDrink)
+
 
 
         val actionBar: ActionBar?
@@ -99,7 +104,6 @@ class TestAddImage : AppCompatActivity() {
 
         // initialise views
         btnSelect = findViewById(R.id.btnChoose)
-        imageView = findViewById(R.id.imgView)
 
         // get the Firebase  storage reference
         storage = FirebaseStorage.getInstance()
@@ -128,69 +132,59 @@ class TestAddImage : AppCompatActivity() {
         var ingredientContainer: LinearLayout = findViewById(R.id.editTextContainer)
 
         var listEditIngredient: ArrayList<EditText> = ArrayList()
-        var listIngredient: ArrayList<String> = ArrayList()
 
         addIngredient.setOnClickListener({
             var edit = EditText(this)
             ingredientContainer.addView(edit)
-            listEditIngredient.add(edit)
         })
 
 
         submit.setOnClickListener {
-            uploadImage()
-            System.out.println("VALEUR DE UPLOADIMAGE : "+uploadImageTerminate)
+            //récupération et validation des champs du formulaire
+            var name: String = editName.getText().toString()
+            var recette: String = editRecette.getText().toString()
+            var details: String = editDetails.getText().toString()
 
-            if(uploadImageTerminate){
-                //récupération et validation des champs du formulaire
-                var notGood: Boolean = false
-                var name: String = editName.getText().toString()
-                var recette: String = editRecette.getText().toString()
-                var details: String = editDetails.getText().toString()
+            var listIngredient: String = ""
+            var ingredientbool = false
 
-                for (edit in listEditIngredient) {
-                    var ingredient: String = edit.getText().toString()
-                    listIngredient.add(ingredient)
+            for (index in 0 until (ingredientContainer as ViewGroup).childCount) {
+                val nextChild = (ingredientContainer as ViewGroup).getChildAt(index) as EditText
+                if(nextChild.getText().toString() != "" && nextChild.getText().toString() != null){
+                    listIngredient += nextChild.getText().toString()+"\n"
+                    ingredientbool =true
                 }
-
-                for (ingredient in listIngredient) {
-                    System.out.println("Ingredient : " + ingredient)
-                    if (name.equals("") || name == null || recette.equals("") || recette == null || ingredient.equals(
-                            ""
-                        ) || ingredient == null || details.equals("") || details == null
-                    ) {
-                        notGood = true
-                    }
-                }
-
-                System.out.println("Name : " + name)
-                System.out.println("Details : " + details)
-                System.out.println("recette : " + recette)
-
-                if (!notGood) {
-                    writeNewCoktail(name, details, recette, listIngredient, "url")
-                }
-                else{
-                    Toast
-                        .makeText(
-                            this,
-                            "Attention il faut remplir tout les champs du formulaire avec au moins 1 ingrédient !",
-                            Toast.LENGTH_LONG
-                        )
-                        .show()
-                }
-
-                reinitialisation(
-                    editName,
-                    editDetails,
-                    editRecette,
-                    listEditIngredient,
-                    ingredientContainer
-                )
+                System.out.println(" voici l'ingredient : " + nextChild.getText().toString())
             }
 
-
-
+            System.out.println(name)
+            System.out.println(recette)
+            System.out.println(details)
+            System.out.println(listEditIngredient.size)
+            if((name == null || name == "") || (recette == "" || recette == null) || !ingredientbool || (details =="" || details == null)){
+                Toast
+                    .makeText(
+                        this,
+                        "Attention il faut remplir tout les champs du formulaire avec au moins 1 ingrédient !",
+                        Toast.LENGTH_LONG
+                    )
+                    .show()
+                System.out.println("il manque quelque chose")
+            }
+            else{
+                uploadImage()
+                if(uploadImageTerminate){
+                    writeNewCoktail(name, details, recette, listIngredient , "url")
+                    uploadImageTerminate = false;
+                }
+            }
+            reinitialisation(
+                editName,
+                editDetails,
+                editRecette,
+                listEditIngredient,
+                ingredientContainer
+            )
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
@@ -214,8 +208,6 @@ class TestAddImage : AppCompatActivity() {
                     startActivity(b)
                 }
                 R.id.ic_5 -> {
-                    val b = Intent(this@TestAddImage, TestAddImage::class.java)
-                    startActivity(b)
                 }
             }
             false
@@ -270,18 +262,13 @@ class TestAddImage : AppCompatActivity() {
 
 
 
-    fun writeNewCoktail(name: String, details: String, recette: String, listIngredient: ArrayList<String>, imageUrl: String){
+    fun writeNewCoktail(name: String, details: String, recette: String, listIngredient: String, imageUrl: String){
 
         //récupération de l'objet coktail
-        var ingredients: String = ""
-        for(ingredient in listIngredient){
-            ingredients = ingredients + ingredient + "\n"
-        }
-        System.out.println(ingredients)
         var newCoktail: Coktail = Coktail()
 
         newCoktail.recette = recette
-        newCoktail.ingredient = ingredients
+        newCoktail.ingredient = listIngredient
         newCoktail.detailsCoktail = details
         newCoktail.coktailName = name
 
@@ -332,7 +319,7 @@ class TestAddImage : AppCompatActivity() {
         name.setText("")
         details.setText("")
         recette.setText("")
-
+        listEditIngredient.clear()
         for(edit in listEditIngredient){
             layout.removeView(edit)
         }
@@ -345,9 +332,9 @@ class TestAddImage : AppCompatActivity() {
 
 
         var dialog: AlertDialog.Builder = AlertDialog.Builder(this)
-        dialog.setTitle("Allow the application to access gallery ? ")
+        dialog.setTitle(R.string.Access)
 
-        dialog.setPositiveButton("YES",
+        dialog.setPositiveButton(R.string.Yes,
             DialogInterface.OnClickListener { dialog, which -> // Write your code here to execute after dialog
                 // Defining Implicit Intent to mobile gallery
                 val intent = Intent()
@@ -357,8 +344,8 @@ class TestAddImage : AppCompatActivity() {
 
             })
 
-        dialog.setNegativeButton("NO", DialogInterface.OnClickListener { dialog, which ->
-            var intent: Intent = Intent(this, MainActivity::class.java)
+        dialog.setNegativeButton(R.string.No, DialogInterface.OnClickListener { dialog, which ->
+            var intent: Intent = Intent(this, FeaturedDrink::class.java)
             startActivity(intent)
             Toast.makeText(getApplicationContext(),
                 "You cant add a new coktail if you don t take a picture", Toast.LENGTH_SHORT)
@@ -394,7 +381,8 @@ class TestAddImage : AppCompatActivity() {
                         contentResolver,
                         filePath
                     )
-                //imageView!!.setImageBitmap(bitmap)
+                imageView!!.setImageBitmap(bitmap)
+                imageView!!.getLayoutParams().height = 500;
             } catch (e: IOException) {
                 // Log the exception
                 e.printStackTrace()
@@ -405,6 +393,7 @@ class TestAddImage : AppCompatActivity() {
 
     // UploadImage method
     private fun uploadImage() {
+        System.out.println("Upload en cours")
         if (filePath != null) {
 
             // Code for showing progressDialog while uploading
@@ -426,11 +415,6 @@ class TestAddImage : AppCompatActivity() {
             if (ref != null) {
                 ref.putFile(filePath!!)
                     .addOnSuccessListener {
-                        //System.out.println("resultat DANS ONSUCCESS LA : "+imageUri)
-                        //var snapshot = taskSnaphot.result
-                        //var download: UploadTask.TaskSnapshot? = snapshot
-                        // Image uploaded successfully
-                        // Dismiss dialog
                         progressDialog.dismiss()
                         Toast
                             .makeText(

@@ -33,7 +33,6 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemTitle.text = listData[position].coktailName
-        holder.itemDetail.text = listData[position].detailsCoktail
         Glide.with(context).load(listData[position].imageUrl).into(holder.itemImage)
         data = listData[position]
         //holder.itemImage.setImageResource(images[position])
@@ -101,7 +100,7 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
                     System.out.println("COKTAIL NAME : " + item.coktailName)
                     if (coktail.coktailName.equals(item.coktailName)) {
                         System.out.println("LE COKTAIL EST UN FAVORIS ? true")
-                        buttonAddFavori.setText("remove from your favoris ?")
+                        buttonAddFavori.setText(R.string.RemoveFavoriButton)
                     }
                 }
             }
@@ -125,7 +124,7 @@ class RecyclerCoktail(var listData: List<Coktail>): RecyclerView.Adapter<Recycle
             //bundle.putParcelableArrayList("listData", listData)
 
 
-            itemView.setOnClickListener {
+            itemDetail.setOnClickListener {
                 for (coktail in listData) {
                     if (coktail.coktailName.equals(itemTitle.text)) {
                         data = coktail

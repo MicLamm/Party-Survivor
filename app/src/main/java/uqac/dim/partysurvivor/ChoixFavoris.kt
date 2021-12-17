@@ -18,11 +18,10 @@ class ChoixFavoris : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choix_favoris)
+        supportActionBar?.setTitle(R.string.ListFavori)
 
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser?.uid
-
-        System.out.println("JE SUIS DANS CHOIW FAVORIS")
 
         val database = FirebaseDatabase.getInstance()
         val refAlcool = database.getReference("favoris/"+currentUser.toString())

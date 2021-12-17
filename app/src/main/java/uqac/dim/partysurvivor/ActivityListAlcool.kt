@@ -53,7 +53,6 @@ class ActivityListAlcool : AppCompatActivity(){
                 gridView.onItemClickListener =
                     AdapterView.OnItemClickListener { a, v, position, id ->
                         val o = gridView.getItemAtPosition(position)
-                        val alcool: Alcool = o as Alcool
                     }
             }
 

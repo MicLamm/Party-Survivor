@@ -9,17 +9,31 @@
     android:background="@color/white">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/addFavoris"
-        android:text="Add in your favoris ?"
-        android:drawableTop="@drawable/add_favoris"
-        android:backgroundTint="@color/white"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:text=" + Add in your favoris"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:textSize="12dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/RemoveFavoris"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Added"
+        android:visibility="gone"
+        android:background="@drawable/btn_rounded"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -37,7 +51,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/raleway"
         android:text="Cocktail Name"
-        android:textSize="20dp"
+        android:textSize="26dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -26,7 +26,6 @@ class CocktailPreview() : AppCompatActivity() {
         var buttonRecette = findViewById<Button>(R.id.ButtonRecette)
         var buttonAddFavori: Button? = findViewById(R.id.addFavoris)
 
-
         var viewIngredient = findViewById<TextView>(R.id.ViewIngredient)
         var viewRecette = findViewById<TextView>(R.id.ViewRecette)
 
@@ -56,7 +55,6 @@ class CocktailPreview() : AppCompatActivity() {
 
             buttonAddFavori?.setOnClickListener({
                 isFavoris(data, buttonAddFavori)
-                //addFavoris(data, buttonAddFavori)
             })
         }
 
@@ -115,20 +113,17 @@ class CocktailPreview() : AppCompatActivity() {
         }
     }
 
-    fun addFavoris(coktail: Coktail, buttonAddFavori: Button){
+    fun addFavoris(coktail: Coktail){
         System.out.println("J OBTIENT CA  : "+coktail)
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser?.uid
-
         val database = FirebaseDatabase.getInstance()
         val ref = database.getReference("favoris")
         System.out.println("LE UID EST : "+currentUser.toString())
-
         var favorisMap: HashMap<String, Coktail> = HashMap()
         favorisMap.put(coktail.coktailName, coktail)
         ref.child(currentUser.toString()).updateChildren(favorisMap as Map<String, Any>)
 
-        buttonAddFavori.setText("remove from your favoris ?")
     }
     fun removeFavoris(coktail: Coktail){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -148,11 +143,8 @@ class CocktailPreview() : AppCompatActivity() {
         ref.get().addOnCompleteListener { task ->
             var coktails : ArrayList<Coktail> = ArrayList()
             if (!task.isSuccessful) {
-
                 println("firebase" + "Error getting data" + task.exception)
-
             } else {
-
                 val snapshotResult = task.result
                 for (snapshot in snapshotResult!!.children) {
                     var coktail = snapshot.getValue(Coktail::class.java)
@@ -161,23 +153,20 @@ class CocktailPreview() : AppCompatActivity() {
                     }
                 }
             }
-            val coktail_details: List<Coktail> = coktails;
+
             var isFavori: Boolean = false
             for(item in coktails){
-                System.out.println("COKTAIL NAME : "+item.coktailName)
-                if(coktail.coktailName.equals(item.coktailName)){
-                    isFavori = true
-                    System.out.println("LE COKTAIL EST UN FAVORIS ? true")
-                    buttonAddFavori.setText("remove from your favoris ?")
-                    //addFavoris(coktail, buttonAddFavori)
-                }
+                System.out.println(item.coktailName)
+                if(item.coktailName == coktail.coktailName)
+                    isFavori=true
             }
             if(isFavori){
-                buttonAddFavori.setText("add to favoris ?")
+                buttonAddFavori.setText(R.string.AddFavoriButton)
                 removeFavoris(coktail)
             }
             else{
-                addFavoris(coktail, buttonAddFavori)
+                findViewById<Button>(R.id.RemoveFavoris).setVisibility(View.GONE)
+                buttonAddFavori.setVisibility(View.VISIBLE)
             }
         }
 
