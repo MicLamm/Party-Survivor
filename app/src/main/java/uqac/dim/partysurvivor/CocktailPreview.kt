@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -26,11 +27,10 @@ class CocktailPreview() : AppCompatActivity() {
         var buttonRecette = findViewById<Button>(R.id.ButtonRecette)
         var buttonAddFavori =  findViewById<Button>(R.id.addFavoris)
         var buttonRemoveFavoris = findViewById<Button>(R.id.RemoveFavoris)
-        var viewIngredient = findViewById<TextView>(R.id.ViewIngredient)
-        var viewRecette = findViewById<TextView>(R.id.ViewRecette)
+        var viewIngredient = findViewById<ScrollView>(R.id.ViewIngredient)
+        var viewRecette = findViewById<ScrollView>(R.id.ViewRecette)
 
         //à retirer quand deplacement dans GamePreview
-        viewIngredient.setMovementMethod(ScrollingMovementMethod())
         viewRecette.setVisibility(View.INVISIBLE)
 
         var listData:List<Coktail>
@@ -50,23 +50,23 @@ class CocktailPreview() : AppCompatActivity() {
             Glide.with(this).load(data.imageUrl).into(image)
 
             var title: TextView = findViewById(R.id.TitleCocktail)
-            title.setText(data.coktailName)
+            title.text = data.coktailName
 
-            var ingredient: TextView = findViewById(R.id.ViewIngredient)
-            ingredient.setText(data.ingredient)
-            var recette: TextView = findViewById(R.id.ViewRecette)
-            recette.setText(data.recette)
+            var ingredient: TextView = viewIngredient.getChildAt(0) as TextView
+            ingredient.text = data.ingredient
+            var recette: TextView = viewRecette.getChildAt(0) as TextView
+            recette.text = data.recette
 
-            buttonAddFavori.setOnClickListener({
+            buttonAddFavori.setOnClickListener {
                 addFavoris(data)
-                buttonRemoveFavoris.setVisibility(View.VISIBLE)
-                buttonAddFavori.setVisibility(View.GONE)
-            })
-            buttonRemoveFavoris.setOnClickListener({
+                buttonRemoveFavoris.visibility = View.VISIBLE
+                buttonAddFavori.visibility = View.GONE
+            }
+            buttonRemoveFavoris.setOnClickListener {
                 removeFavoris(data)
-                buttonRemoveFavoris.setVisibility(View.GONE)
-                buttonAddFavori.setVisibility(View.VISIBLE)
-            })
+                buttonRemoveFavoris.visibility = View.GONE
+                buttonAddFavori.visibility = View.VISIBLE
+            }
             isFavoris(data,buttonAddFavori,buttonRemoveFavoris)
         }
 
@@ -98,7 +98,7 @@ class CocktailPreview() : AppCompatActivity() {
             false
         }
     }
-    
+
     fun addFavoris(coktail: Coktail){
         System.out.println("J OBTIENT CA  : "+coktail)
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -111,7 +111,7 @@ class CocktailPreview() : AppCompatActivity() {
         ref.child(currentUser.toString()).updateChildren(favorisMap as Map<String, Any>)
 
     }
-    fun removeFavoris(coktail: Coktail){
+    private fun removeFavoris(coktail: Coktail){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser?.uid
         val database = FirebaseDatabase.getInstance()
