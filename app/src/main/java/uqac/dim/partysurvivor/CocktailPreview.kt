@@ -24,7 +24,8 @@ class CocktailPreview() : AppCompatActivity() {
         setContentView(R.layout.activity_cocktail_preview)
         var buttonIngredient = findViewById<Button>(R.id.ButtonIngredient)
         var buttonRecette = findViewById<Button>(R.id.ButtonRecette)
-        var buttonAddFavori: Button? = findViewById(R.id.addFavoris)
+        var buttonAddFavori =  findViewById<Button>(R.id.addFavoris)
+        var buttonRemoveFavoris = findViewById<Button>(R.id.RemoveFavoris)
 
         var viewIngredient = findViewById<TextView>(R.id.ViewIngredient)
         var viewRecette = findViewById<TextView>(R.id.ViewRecette)
@@ -37,6 +38,10 @@ class CocktailPreview() : AppCompatActivity() {
         buttonRecette.setOnClickListener {
             viewIngredient.visibility = View.GONE;
             viewRecette.visibility = View.VISIBLE;
+        }
+        buttonIngredient.setOnClickListener {
+            viewIngredient.visibility = View.VISIBLE;
+            viewRecette.visibility = View.GONE;
         }
         val position: Int = intent.getIntExtra("position", -1)
         val data:Coktail = intent.getSerializableExtra("data") as Coktail
@@ -53,9 +58,17 @@ class CocktailPreview() : AppCompatActivity() {
             var recette: TextView = findViewById(R.id.ViewRecette)
             recette.setText(data.recette)
 
-            buttonAddFavori?.setOnClickListener({
-                isFavoris(data, buttonAddFavori)
+            buttonAddFavori.setOnClickListener({
+                addFavoris(data)
+                buttonRemoveFavoris.setVisibility(View.VISIBLE)
+                buttonAddFavori.setVisibility(View.GONE)
             })
+            buttonRemoveFavoris.setOnClickListener({
+                removeFavoris(data)
+                buttonRemoveFavoris.setVisibility(View.GONE)
+                buttonAddFavori.setVisibility(View.VISIBLE)
+            })
+            isFavoris(data,buttonAddFavori,buttonRemoveFavoris)
         }
 
         val navigation = findViewById<View>(R.id.navigation) as BottomNavigationView
@@ -134,7 +147,7 @@ class CocktailPreview() : AppCompatActivity() {
         ref.child(coktail.coktailName).removeValue()
     }
 
-    fun isFavoris(coktail: Coktail, buttonAddFavori: Button){
+    fun isFavoris(coktail: Coktail, buttonAddFavori: Button, buttonRemoveFavoris: Button){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser?.uid
         val database = FirebaseDatabase.getInstance()
@@ -161,11 +174,11 @@ class CocktailPreview() : AppCompatActivity() {
                     isFavori=true
             }
             if(isFavori){
-                buttonAddFavori.setText(R.string.AddFavoriButton)
-                removeFavoris(coktail)
+                buttonRemoveFavoris.setVisibility(View.VISIBLE)
+                buttonAddFavori.setVisibility(View.GONE)
             }
             else{
-                findViewById<Button>(R.id.RemoveFavoris).setVisibility(View.GONE)
+                buttonRemoveFavoris.setVisibility(View.GONE)
                 buttonAddFavori.setVisibility(View.VISIBLE)
             }
         }
